@@ -22,6 +22,7 @@
   "homepage": "https://github.com/Pink-Fairy-Dillos/view-finder#readme",
   "dependencies": {
     "@angular/router": "^14.2.4",
+    "@react-google-maps/api": "^2.13.1",
     "cookie-parser": "^1.4.6",
     "cross-env": "^7.0.3",
     "express": "^4.18.1",
@@ -52,7 +53,6 @@
     "eslint-plugin-react": "^7.31.8",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
-    "node-sass": "^7.0.3",
     "nodemon": "^2.0.20",
     "postcss-loader": "^7.0.1",
     "postcss-preset-env": "^7.8.2",
