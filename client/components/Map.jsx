@@ -70,7 +70,10 @@ function MyComponent() {
           selected.location && 
           (
             <InfoWindow position={selected.location} clickable={true} onCloseClick={() => setSelected({})}>
-              <p>{selected.name}</p>
+              <p>
+                <p>{selected.name}</p>
+                <p>{selected.address}</p>
+              </p>
             </InfoWindow>
           )
         }

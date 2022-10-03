@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SidebarForm from './SidebarForm.jsx';
+import Input from './Input.jsx';
 
 const Sidebar = props => {
     return (
@@ -10,7 +10,7 @@ const Sidebar = props => {
 
         <div id="sidebarContainer">
           <p id="sidebarText">SIDEBAR</p>
-          <SidebarForm />
+          <Input />
         </div>
        
     )

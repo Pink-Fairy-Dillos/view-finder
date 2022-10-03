@@ -104,6 +104,30 @@ position: relative;
   grid-column-gap: .5fr;
 }
 
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6a97c9;
+  color: #fffad6;
+  border-radius: 15px;
+  border: solid;
+  font-size: 35px;
+  padding: 12px;
+  border-color: #398BD4;
+  margin: 10px;
+}
+
+input {
+  padding:10px;
+margin:10px 0;
+border: 2px solid #eee;
+box-shadow:2px 2px 8px -5px black;
+border-radius: 5px;
+width: 275px;
+font-size: 1em;
+}
+
 /* not sure if this is needed? */
 /* #maindiv {
   width: 100%; 
