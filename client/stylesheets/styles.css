@@ -1,4 +1,5 @@
 body, html {
+<<<<<<< HEAD
     background-color: black;
     display: flex;
     margin: 0;
@@ -34,6 +35,100 @@ position: absolute;
 */
 
 
+=======
+  background-color: black;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#app {
+height: 100%;
+width: 100%;
+position: relative;
+}
+
+#navbarContainer {
+  height: 50px;
+  background-color: white;
+  text-align: center;
+  justify-content: center;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+}
+
+#navbarText {
+  display: inline;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 45px;
+  font-weight: 600;
+  color: black;
+  letter-spacing: 7px;;
+}
+
+#logoV {
+  height: 40px;
+  width: auto;
+  margin-left: 5px;
+}
+
+#arrow {
+  height: 40px;
+  width: auto;
+  /* margin-right: 5px; */
+  margin-bottom: -2px;
+}
+
+#sidebarContainer {
+  height: 100vh;
+  width: 100%;
+  background-color: white;
+  color: black;
+  text-align: center;
+  justify-content: center;
+  border-left: 3px solid black;
+}
+
+#sidebarText {
+  display: inline;
+  font-size: 45px;
+  font-weight: 600;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#mapSidebarContainer {
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  grid-column-gap: .5fr;
+}
+
+/* not sure if this is needed? */
+/* #maindiv {
+  width: 100%; 
+  height: 100%;
+  position: relative;
+} */
+
+/* not sure if this is needed? */
+/* #mapdiv {
+  width: 100%; 
+  height: 100%;
+  position: relative;
+} */
+
+/* not sure if this is needed? */
+/* 
+position: absolute;
+  width: 100vh;
+  height: 100vh;
+  left: 0;
+  top: 0
+*/
+
+/* not sure if this is needed? */
+>>>>>>> bc12472 (Matt's changes to UI, basic marker, info box, and fetch to saved locations)
 /* 
 
 display: grid;

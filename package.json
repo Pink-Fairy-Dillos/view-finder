@@ -2,7 +2,11 @@
   "name": "view-finder",
   "version": "1.0.0",
   "description": "",
+<<<<<<< HEAD
   "main": "./client/index.js",
+=======
+  "main": "node server/server.js",
+>>>>>>> e9ea26b (Matt's changes to UI, basic marker, info box, and fetch to saved locations)
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cross-env NODE_ENV=production webpack",
