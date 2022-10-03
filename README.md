@@ -17,3 +17,6 @@ npm --version
 
 npm install
 
+
+We referred to this stackoverflow post: https://stackoverflow.com/questions/68896696/having-trouble-installing-npm-on-mac-m1
+

@@ -1,0 +1,167 @@
+body, html {
+  background-color: white;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+#navbarContainer {
+  height: 50px;
+  background-color: white;
+  text-align: center;
+  justify-content: center;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  align-items: center;
+}
+
+#navbarText {
+  display: inline;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 45px;
+  font-weight: 600;
+  color: black;
+  letter-spacing: 7px;
+}
+
+#logoV {
+  height: 40px;
+  width: auto;
+  margin-left: 5px;
+}
+
+#arrow {
+  height: 40px;
+  width: auto;
+  /* margin-right: 5px; */
+  margin-bottom: -2px;
+}
+
+#sidebarContainer {
+  height: 100vh;
+  width: 100%;
+  background-color: white;
+  color: black;
+  text-align: center;
+  justify-content: center;
+  border-left: 3px solid black;
+  padding-top: 30px;
+}
+
+#sidebarText {
+  display: inline;
+  font-size: 30px;
+  font-weight: 600;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#mapSidebarContainer {
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  grid-column-gap: .5fr;
+}
+
+form {
+  padding-top: 45px;
+}
+
+/* button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6a97c9;
+  color: #fffad6;
+  border-radius: 15px;
+  border: solid;
+  font-size: 35px;
+  padding: 12px;
+  border-color: #398BD4;
+  margin: 10px;
+} */
+
+.navbarContainer input {
+  margin-top: 0;
+ 
+}
+
+.inputContainer {
+  display: grid;
+  /* grid-template-columns: 100px auto;
+  grid-template-rows: auto auto auto auto auto; */
+  font-family: sans-serif;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputContainer input {
+  /* padding: 10px; */
+  /* margin: 10px; */
+  padding:10px;
+  margin:10px 0;
+  border: 2px solid #eee;
+  box-shadow:2px 2px 8px -5px black;
+  border-radius: 5px;
+  width: 275px;
+  font-size: 1em;
+}
+
+#instructions {
+  font-family: sans-serif;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  margin: 50px;
+  border: solid;
+  border-color: rgb(135, 135, 135);
+  border-radius: 5px;
+  font-size: 25px;
+
+}
+
+#searchForm {
+  display: inline-block;
+  margin-top: 0;
+  align-items: start;
+  padding-top: 0;
+}
+
+/* not sure if this is needed? */
+/* #maindiv {
+  width: 100%; 
+  height: 100%;
+  position: relative;
+} */
+
+/* not sure if this is needed? */
+/* #mapdiv {
+  width: 100%; 
+  height: 100%;
+  position: relative;
+} */
+
+/* not sure if this is needed? */
+/* 
+position: absolute;
+  width: 100vh;
+  height: 100vh;
+  left: 0;
+  top: 0
+*/
+
+/* not sure if this is needed? */
+/* 
+
+display: grid;
+grid-template-areas: 
+"nav nav"
+"map" "sidebar"
+
+*/
