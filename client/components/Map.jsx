@@ -32,23 +32,26 @@ const center = {
   // lng: -38.523
 };
 
-function MyComponent() {
+function MyComponent(props) {
 
-  const [savedLocations, setSavedLocations] = useState([]);
+  // const [savedLocations, setSavedLocations] = useState([]);
+  const savedLocations = props.savedLocations;
+  // const setSavedLocations = props.setSavedLocations;
+
   const [selected, setSelected] = useState({});
 
   const onSelect = item => {
     setSelected(item);
   }
 
-  useEffect(() => {
-    fetch('api/locations')
-      .then(res => res.json())
-      .then((locations) => {
-        if (!Array.isArray(locations)) locations = [];
-        setSavedLocations(locations);
-      })
-  })
+  // useEffect(() => {
+  //   fetch('api/locations')
+  //     .then(res => res.json())
+  //     .then((locations) => {
+  //       if (!Array.isArray(locations)) locations = [];
+  //       setSavedLocations(locations);
+  //     })
+  // })
 
   return (
     <LoadScript
@@ -72,7 +75,11 @@ function MyComponent() {
             <InfoWindow position={selected.location} clickable={true} onCloseClick={() => setSelected({})}>
               <p>
                 <p>{selected.name}</p>
-                <p>{selected.address}</p>
+                <p>{selected.street_address}</p>
+                <p>{selected.city}</p>
+                <p>{selected.state}</p>
+                <p>{selected.zip_code}</p>
+                <p>{selected.captions}</p>
               </p>
             </InfoWindow>
           )

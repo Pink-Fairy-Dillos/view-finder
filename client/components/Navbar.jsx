@@ -9,6 +9,15 @@ const Navbar = props => {
           <img id="arrow" src={arrow}/>
           <p id="navbarText">IEWFINDER</p>
           <img id="logoV" src={logoV}/>
+        
+          <form id="searchForm" >
+          <input type="text" placeholder="Search locations" /> 
+          <input type="submit" />
+          </form>
+          {/* <input type="text" placeholder="Search locations" /> 
+          <input type="submit" /> */}
+      
+          
         </div>
        
     )

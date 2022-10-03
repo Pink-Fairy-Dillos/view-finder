@@ -1,42 +1,5 @@
 body, html {
-<<<<<<< HEAD
-    background-color: black;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-}
-
-#app {
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-
-#maindiv {
-    width: 100%; 
-    height: 100%;
-    position: relative;
-}
-
-#mapdiv {
-    width: 100%; 
-    height: 100%;
-    position: relative;
-}
-
-/* 
-position: absolute;
-    width: 100vh;
-    height: 100vh;
-    left: 0;
-    top: 0
-*/
-
-
-=======
-  background-color: black;
+  background-color: white;
   display: flex;
   margin: 0;
   padding: 0;
@@ -45,9 +8,9 @@ position: absolute;
 }
 
 #app {
-height: 100%;
-width: 100%;
-position: relative;
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
 
 #navbarContainer {
@@ -57,6 +20,7 @@ position: relative;
   justify-content: center;
   border-top: 3px solid black;
   border-bottom: 3px solid black;
+  align-items: center;
 }
 
 #navbarText {
@@ -65,7 +29,7 @@ position: relative;
   font-size: 45px;
   font-weight: 600;
   color: black;
-  letter-spacing: 7px;;
+  letter-spacing: 7px;
 }
 
 #logoV {
@@ -89,11 +53,12 @@ position: relative;
   text-align: center;
   justify-content: center;
   border-left: 3px solid black;
+  padding-top: 30px;
 }
 
 #sidebarText {
   display: inline;
-  font-size: 45px;
+  font-size: 30px;
   font-weight: 600;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -104,7 +69,11 @@ position: relative;
   grid-column-gap: .5fr;
 }
 
-button {
+form {
+  padding-top: 45px;
+}
+
+/* button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,16 +85,52 @@ button {
   padding: 12px;
   border-color: #398BD4;
   margin: 10px;
+} */
+
+.navbarContainer input {
+  margin-top: 0;
+ 
 }
 
-input {
+.inputContainer {
+  display: grid;
+  /* grid-template-columns: 100px auto;
+  grid-template-rows: auto auto auto auto auto; */
+  font-family: sans-serif;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputContainer input {
+  /* padding: 10px; */
+  /* margin: 10px; */
   padding:10px;
-margin:10px 0;
-border: 2px solid #eee;
-box-shadow:2px 2px 8px -5px black;
-border-radius: 5px;
-width: 275px;
-font-size: 1em;
+  margin:10px 0;
+  border: 2px solid #eee;
+  box-shadow:2px 2px 8px -5px black;
+  border-radius: 5px;
+  width: 275px;
+  font-size: 1em;
+}
+
+#instructions {
+  font-family: sans-serif;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  margin: 50px;
+  border: solid;
+  border-color: rgb(135, 135, 135);
+  border-radius: 5px;
+  font-size: 25px;
+
+}
+
+#searchForm {
+  display: inline-block;
+  margin-top: 0;
+  align-items: start;
+  padding-top: 0;
 }
 
 /* not sure if this is needed? */
@@ -152,7 +157,6 @@ position: absolute;
 */
 
 /* not sure if this is needed? */
->>>>>>> bc12472 (Matt's changes to UI, basic marker, info box, and fetch to saved locations)
 /* 
 
 display: grid;

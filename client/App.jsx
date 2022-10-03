@@ -1,35 +1,44 @@
-import React, { Component } from 'react';
-<<<<<<< HEAD
-import Map from '/client/Map.jsx';
-import Sidebar from '/client/Sidebar.jsx'
-import styles from '/client/stylesheets/styles.css'
-import Navbar from '/client/Navbar.jsx';
-=======
+import React, { Component, useState, useEffect } from 'react';
+
 import Map from '/client/components/Map.jsx';
 import Sidebar from '/client/components/Sidebar.jsx'
 import styles from '/client/stylesheets/styles.css'
 import Navbar from '/client/components/Navbar.jsx';
->>>>>>> bc12472 (Matt's changes to UI, basic marker, info box, and fetch to saved locations)
 
 const App = props => {
-    return (
-        
-        <div id="maindiv">
-<<<<<<< HEAD
+
+  const [savedLocations, setSavedLocations] = useState([]);
+
+  const [userData, setAddress] = useState({
+    name: '',
+    street_address: '',
+    city: '',
+    state: '',
+    zip: '',
+    caption: ''
+  })
+
+  useEffect(() => {
+    fetch('api/getList')
+      .then(res => res.json())
+      .then((locations) => {
+        if (!Array.isArray(locations)) locations = [];
+        setSavedLocations(locations);
+      })
+  })
+
+  return (
+      
+      <div id="maindiv">
         <div id="navbar"> <Navbar /> </div> 
-        <div id="mapdiv">  <Map /> </div>
-        <div id="sidebardiv"> <Sidebar /> </div>
-        
-=======
-          <div id="navbar"> <Navbar /> </div> 
-          <div id="mapSidebarContainer" >
-            <div id="mapdiv"> <Map /> </div>
-            <div id="sidebardiv"> <Sidebar /> </div>
-          </div>
->>>>>>> bc12472 (Matt's changes to UI, basic marker, info box, and fetch to saved locations)
+        <div id="mapSidebarContainer" >
+          <div id="mapdiv"> <Map savedLocations={savedLocations} /> </div>
+          <div id="sidebardiv"> <Sidebar savedLocations={savedLocations} setSavedLocations={setSavedLocations} userData={userData} setAddress={setAddress}/> </div>
         </div>
-       
-    )
+
+      </div>
+      
+  )
 }
 
 
