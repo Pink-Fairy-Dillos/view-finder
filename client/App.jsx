@@ -20,7 +20,9 @@ const App = props => {
     caption: ''
   })
 
-  // UseEffect to update the saved locations after rendering
+  // UseEffect to update the saved locations after rendering. 
+  // SavedLocations/[] was passedin as a second arg to prevent constant rerendering. 
+  // Can be changed to rerender once when when a new location is added.
   useEffect(() => {
     fetch('api/getList')
       .then(res => res.json())
