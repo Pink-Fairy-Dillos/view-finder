@@ -7,8 +7,10 @@ import Navbar from '/client/components/Navbar.jsx';
 
 const App = props => {
 
+  // Using state to store, update and display location pins on the map.
   const [savedLocations, setSavedLocations] = useState([]);
 
+  // Using state to receive user input about new locations to pass to database.
   const [userData, setAddress] = useState({
     name: '',
     street_address: '',
@@ -18,14 +20,15 @@ const App = props => {
     caption: ''
   })
 
+  // UseEffect to update the saved locations after rendering
   useEffect(() => {
     fetch('api/getList')
       .then(res => res.json())
       .then((locations) => {
         if (!Array.isArray(locations)) locations = [];
-        setSavedLocations(locations);
+          setSavedLocations(locations);
       })
-  })
+  }, savedLocations)
 
   return (
       

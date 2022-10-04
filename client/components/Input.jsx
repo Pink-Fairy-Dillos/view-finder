@@ -9,18 +9,9 @@ const Input = (props) => {
     const userData = props.userData;
     const setAddress = props.setAddress;
 
-    // const [userData, setAddress] = useState({
-    //     name: '',
-    //     street_address: '',
-    //     // apt: '',
-    //     city: '',
-    //     state: '',
-    //     zip_code: '',
-    //     caption: ''
-    //   })
-
+    // This function takes values from input fields and updates the userData piece of state,
     const handleChange = (e, property) => {
-        if (property === 'zip') {
+        if (property === 'zip') { // this is to coerece the zip code inputted as a string, into an integer 
             let updatedValue = {};
         updatedValue = {[property]: parseInt(e.target.value)};
         setAddress(userData => ({
@@ -36,93 +27,82 @@ const Input = (props) => {
             }))}
     }
 
+    // This function submits user inputted data from input fields
+    // and sends to database. The final .then() statement is supposed to cause
+    // a re-render with thew newly inputted pin, but it isn't working yet.
+    // Addresses are geocded by the back end into lat/long coordinates that the
+    // map library uses.
     const submitFunc = () => {
-        //what happens when we submit?
-        // fetch post to server with state attached in body
         fetch('/api/newLocation', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(userData) // is this the correct thing to pass in?
+            body: JSON.stringify(userData)
         })
-        .then(res => setSavedLocations(res.body)) // response body should contain updated list of locations
-        .then(res => console.log(res.body))
-        // take state back to 0
+        .then((res) => setSavedLocations(res.body)) // REFACTOR
+        
     }
 
     return (
-// this input field needs an address
-//caption
+
         <div> 
            <form onSubmit={submitFunc}>
            <label>
             <div className="inputContainer" > 
-                {/* <div> Name </div> */}
                 <input
                 type="text"
                 name="apt"
                 placeholder="Name"
                 defaultValue={userData.name}
-                // value={userData.apt}
                 onChange={(e) => handleChange(e, "name")}
             />
              </div> 
              <div className="inputContainer" > 
-                {/* <div> Address </div> */}
                 <input
                 type="text"
                 name="street_address"
                 placeholder="Address"
                 defaultValue={userData.street_address}
-                // value={userData.street_address}
                 onChange={(e) => handleChange(e, "street_address")}
                 />
             </div>
             <div className="inputContainer" > 
-                {/* <div> City </div> */}
                 <input
                 type="text"
                 name="city"
                 placeholder="City"
                 defaultValue={userData.city}
-                //  value={userData.city}
                 onChange={(e) => handleChange(e, "city")}
             />
             </div>
             <div className="inputContainer" > 
-             {/* <div> State </div> */}
             <input
              type="text"
              name="state"
              placeholder="State"
              defaultValue={userData.state}
-            //  value={userData.state}
              onChange={(e) => handleChange(e, "state")}
             />
             </div>
             
             <div className="inputContainer">
-                {/* <div> Zip </div> */}
                 <input
                 type="text"
                 name="zip"
                 placeholder="Zip Code"
                 defaultValue={userData.zip}
-                // value={userData.zip}
                 onChange={(e) => handleChange(e, "zip")}
                 />
             </div>
 
             <div className="inputContainer">
-                {/* <div> Caption </div> */}
                 <input
                 type="text"
                 name="caption"
                 placeholder="Caption"
                 defaultValue={userData.caption}
-                // value={userData.caption}
                 onChange={(e) => handleChange(e, "caption")}
                 />
             </div> 
@@ -131,7 +111,6 @@ const Input = (props) => {
            <input type="submit" />
            </div>
            </form>
-           {/* <div> {JSON.stringify(userData)} </div> */}
            <div id="instructions"> Welcome to Viewfinder! Check out the pins on the map for cool spots for a photo opportunity. If you know an instragammable landmark or viewpoint, submit it using the forms above! </div>
         </div>
     )
