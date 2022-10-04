@@ -10,6 +10,7 @@ const Navbar = props => {
           <p id="navbarText">IEWFINDER</p>
           <img id="logoV" src={logoV}/>
         
+          {/* The search from was not implemented yet, but could be a good stretch feature to incorporate google maps autocomplete */}
           <form id="searchForm" >
           <input type="text" placeholder="Search locations" /> 
           <input type="submit" />

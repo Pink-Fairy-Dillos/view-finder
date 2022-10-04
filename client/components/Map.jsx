@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 
-// This component imports the React Google Maps library and implements it.
+// This component imports the React Google Maps API library and implements it.
 // Data is passed down to the GoogleMap component as props.
 
+// This sets the map size in the app. This gets passed into the GoogleMap component in the mapContainerStyle attribute
 const mapStyle = {
     height: '100vh',
     width: '100%',
   }
 
-  // This constant sets the center point of the map, currently Los Angeles
+// This constant sets the center point of the map, currently Los Angeles
 const center = {
   lat: 34.052,
   lng: -118.244
@@ -17,9 +18,10 @@ const center = {
 
 function MyComponent(props) {
 
+  // This is the array of saved locations pulled from the database
   const savedLocations = props.savedLocations;
 
-
+  // This is the current selected pin on the map
   const [selected, setSelected] = useState({});
 
   const onSelect = item => {
@@ -35,8 +37,10 @@ function MyComponent(props) {
   //     })
   // })
 
+  // Refer to the slim google maps API library documentation for built in methods an props
   return (
     <LoadScript
+     // Add in your own Google Maps API key here
       googleMapsApiKey="AIzaSyBRacG1Uw6S2XcqqqA50dnaTRUSwiJ2Gg4"
     >
       <GoogleMap
