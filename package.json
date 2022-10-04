@@ -2,7 +2,7 @@
   "name": "view-finder",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.config.js",
+  "main": "./client/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cross-env NODE_ENV=production webpack",
@@ -32,6 +32,7 @@
     "node-fetch": "^3.2.10",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "path": "^0.12.7",
+    "pg": "^8.8.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hot-loader": "^4.13.0",
