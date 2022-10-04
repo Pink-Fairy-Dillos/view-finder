@@ -4,8 +4,10 @@ const db = require('../models/databaseModel.js');
 const locationController = {};
 
 locationController.geoCode = (req, res, next) => {
+
     const { street_address, city, state } = req.body;
     fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${street_address},+${city},+${state}&key=AIzaSyBRacG1Uw6S2XcqqqA50dnaTRUSwiJ2Gg4`)
+
         .then((data) => data.json())
         .then((data) => {
             console.log('Made the fetch');
@@ -40,6 +42,7 @@ locationController.addLocation = (req, res, next) => {
     const { street_address, city, state, lat, lng, formatted_address } = res.locals.newEntry;
     const text = 'INSERT INTO locations(street_address, city, state, created_by_id, zip_code, lat, lng,  name, formatted_address) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING _id;';
     const params = [street_address, city, state, null, zip, lat, lng, name, formatted_address];
+
     db.query(text, params, (err, res2) => {
         if (err) {
             next({
@@ -58,10 +61,20 @@ locationController.addLocation = (req, res, next) => {
 }
 
 
+
+/*
+SELECT * FROM locations l
+LEFT OUTER JOIN captions c
+ON c.location_id = l._id
+
+*/
 locationController.getLocationsAndCaptions = (req, res, next) => {
+    console.log('hello, from ADD LOCATION');
+
     const text = `SELECT * FROM locations l
                   LEFT OUTER JOIN captions c
                   ON c.location_id = l._id;`;
+
 
     // The purpose of entriesFormatter is to return an array with objects.
     // We should only receive one object per location and each object contains an array of captions.
@@ -78,12 +91,15 @@ locationController.getLocationsAndCaptions = (req, res, next) => {
                 el.caption ? mapp.set(el._id, [el.caption]) : mapp.set(el._id, ['']);
             }
         })
+
         // Output will have one object per each locations
         let output = []
         // Use a set to keep track what objects I have added to my output array
         let setOfVisitedId = new Set();
         array.forEach(el => {
             // If it's not in the set then we add the object and the captions array to the output array
+
+
             if (!setOfVisitedId.has(el._id)) {
                 el.caption = mapp.get(el._id)
                 el.location = {
@@ -96,6 +112,7 @@ locationController.getLocationsAndCaptions = (req, res, next) => {
         });
         return output;
     };
+
     // Query the database to obtain all locations and captions
     db.query(text)
         .then(data => {

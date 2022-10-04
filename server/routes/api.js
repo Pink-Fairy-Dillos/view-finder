@@ -8,6 +8,7 @@ router.post('/newLocation',
     locationController.geoCode,
     locationController.addLocation,
     captionsController.addCaption,
+
     locationController.getLocationsAndCaptions,
     (req, res) => {
         console.log('made it to the router');
@@ -20,6 +21,7 @@ router.get('/getList',
         console.log('made it to the router');
         return res.status(200).json(res.locals.bigList);
     })
+
 
 
 
@@ -92,3 +94,4 @@ module.exports = router;
 
 
 // module.exports = router;
+

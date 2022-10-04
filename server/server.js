@@ -12,7 +12,6 @@ app.use('/build', express.static(path.join(__dirname, '../build')));
 // route handler to respond with main app
 app.get("/",
     (req, res) => {
-
         return res.status(200).sendFile(path.join(__dirname, "../client/index.html"));
     })
 
