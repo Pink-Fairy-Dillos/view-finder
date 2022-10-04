@@ -4,8 +4,10 @@ const db = require('../models/databaseModel.js');
 const locationController = {};
 
 locationController.geoCode = (req, res, next) => {
-    const { address, city, state } = req.body;
-    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address},+${city},+${state}&key=AIzaSyBRacG1Uw6S2XcqqqA50dnaTRUSwiJ2Gg4`)
+
+    const { street_address, city, state } = req.body;
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${street_address},+${city},+${state}&key=AIzaSyBRacG1Uw6S2XcqqqA50dnaTRUSwiJ2Gg4`)
+
         .then((data) => data.json())
         .then((data) => {
             console.log('Made the fetch');
@@ -13,8 +15,9 @@ locationController.geoCode = (req, res, next) => {
             const lat = data.results[0].geometry.location.lat;
             const lng = data.results[0].geometry.location.lng;
             const addy = data.results[0].formatted_address;
+
             res.locals.newEntry = {
-                address: address,
+                street_address: street_address,
                 city: city,
                 state: state,
                 lat: lat,
@@ -36,9 +39,10 @@ locationController.geoCode = (req, res, next) => {
 locationController.addLocation = (req, res, next) => {
     console.log('hello, from ADD LOCATION');
     const { name, caption, zip } = req.body;
-    const { address, city, state, lat, lng, formatted_address } = res.locals.newEntry;
+    const { street_address, city, state, lat, lng, formatted_address } = res.locals.newEntry;
     const text = 'INSERT INTO locations(street_address, city, state, created_by_id, zip_code, lat, lng,  name, formatted_address) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING _id;';
-    const params = [address, city, state, null, zip, lat, lng, name, formatted_address];
+    const params = [street_address, city, state, null, zip, lat, lng, name, formatted_address];
+
     db.query(text, params, (err, res2) => {
         if (err) {
             next({
@@ -56,6 +60,8 @@ locationController.addLocation = (req, res, next) => {
     });
 }
 
+
+
 /*
 SELECT * FROM locations l
 LEFT OUTER JOIN captions c
@@ -64,11 +70,17 @@ ON c.location_id = l._id
 */
 locationController.getLocationsAndCaptions = (req, res, next) => {
     console.log('hello, from ADD LOCATION');
+
     const text = `SELECT * FROM locations l
                   LEFT OUTER JOIN captions c
                   ON c.location_id = l._id;`;
 
+
+    // The purpose of entriesFormatter is to return an array with objects.
+    // We should only receive one object per location and each object contains an array of captions.
+    // We use entriesFormatter to prevent duplicate objects and create an array with all the captions. Time-Complexity O(n)
     const entriesFormatter = (array) => {
+        // Use a map to store a key linked to the objects' id's and store as a value an array containing all captions from that location
         let mapp = new Map();
         array.forEach(el => {
             if (mapp.has(el._id)) {
@@ -79,9 +91,15 @@ locationController.getLocationsAndCaptions = (req, res, next) => {
                 el.caption ? mapp.set(el._id, [el.caption]) : mapp.set(el._id, ['']);
             }
         })
+
+        // Output will have one object per each locations
         let output = []
+        // Use a set to keep track what objects I have added to my output array
         let setOfVisitedId = new Set();
         array.forEach(el => {
+            // If it's not in the set then we add the object and the captions array to the output array
+
+
             if (!setOfVisitedId.has(el._id)) {
                 el.caption = mapp.get(el._id)
                 el.location = {
@@ -94,10 +112,13 @@ locationController.getLocationsAndCaptions = (req, res, next) => {
         });
         return output;
     };
+
+    // Query the database to obtain all locations and captions
     db.query(text)
         .then(data => {
-            let newArr = entriesFormatter(data.rows)
+            let newArr = entriesFormatter(data.rows);
             res.locals.bigList = newArr;
+            console.log(res.locals.bigList);
             next();
         })
         .catch((err) => {

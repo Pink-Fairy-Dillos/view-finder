@@ -31,3 +31,17 @@ captionsController.addCaption = (req, res, next) => {
 
 
 module.exports = captionsController;
+//const db = require('../models/databaseModel.js');
+
+// const captionController = {};
+// // We added our location into locations table and now we want to add caption
+// // Taking caption
+
+
+
+
+
+
+
+// module.exports = captionController;
+

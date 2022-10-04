@@ -1,42 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 
+// This component imports the React Google Maps library and implements it.
+// Data is passed down to the GoogleMap component as props.
+
 const mapStyle = {
     height: '100vh',
     width: '100%',
   }
 
+  // This constant sets the center point of the map, currently Los Angeles
 const center = {
-
-  // El Paso lat/lng
-  // lat: 31.772,
-  // lng: -106.461
-
-  // Galveston lat/lng
-  // lat: 29.301,
-  // lng: -94.798
-
-  // Los Angeles lat/lng
   lat: 34.052,
   lng: -118.244
-
-  // Palm Springs lat/lng
-  // lat: 33.722,
-  // lng: -116.374
-  
-  // Seattle lat/lng
-  // lat: 47.608,
-  // lng: -122.335
-
-  // lat: -3.745,
-  // lng: -38.523
 };
 
 function MyComponent(props) {
 
-  // const [savedLocations, setSavedLocations] = useState([]);
   const savedLocations = props.savedLocations;
-  // const setSavedLocations = props.setSavedLocations;
+
 
   const [selected, setSelected] = useState({});
 
@@ -79,7 +61,7 @@ function MyComponent(props) {
                 <p>{selected.city}</p>
                 <p>{selected.state}</p>
                 <p>{selected.zip_code}</p>
-                <p>{selected.captions}</p>
+                <p>{selected.caption}</p>
               </p>
             </InfoWindow>
           )
