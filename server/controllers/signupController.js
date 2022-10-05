@@ -20,7 +20,10 @@ signupController.createUser = (req, res, next) => {
       console.log(dbResponse);
       return next();
     })
-    .catch(err => next(createErr(err)));
+    .catch(err => {
+      console.log(err);
+      return next(createErr(err));
+    })
 };
 
 module.exports = signupController;
