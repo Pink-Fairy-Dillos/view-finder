@@ -39,24 +39,30 @@ loginController.checkCredentials = (req, res, next) => {
   };
 
 loginController.setCookie = (req, res, next) => {
-  // add current user to sessions table in database
-  const { user_id, username } = res.locals.user;
-  const session_id = Math.random().toString();
-  // creates cookie
-  res.cookie('SSID', session_id);//add optionality to cookie?
+      let session = req.session;
+      session.userid = req.body.username;
+      console.log(req.session);
+      return next();
+    }
   
-  // add cookie and user to sessions table in db
-  const add = 'INSERT INTO sessions (session, user_id) VALUES ($1, $2);'
-  db.query(add, [session_id, user_id])
-  .then(res => {
-    // console.log(res)
-    return next();
-  })
-  .catch(err => next(createErr(err)));
-};
+//   // add current user to sessions table in database
+//   const { user_id, username } = res.locals.user;
+//   const session_id = Math.random().toString();
+//   // creates cookie
+//   res.cookie('SSID', session_id);//add optionality to cookie?
+  
+//   // add cookie and user to sessions table in db
+//   const add = 'INSERT INTO sessions (session, user_id) VALUES ($1, $2);'
+//   db.query(add, [session_id, user_id])
+//   .then(res => {
+//     // console.log(res)
+//     return next();
+//   })
+//   .catch(err => next(createErr(err)));
+// };
 
-  // req.cookies: { tracy: '0.023381441699068528' },
-  // req.cookies: { SSID: '0.023381441699068528' },
+//   // req.cookies: { tracy: '0.023381441699068528' },
+//   // req.cookies: { SSID: '0.023381441699068528' },
 
 loginController.checkCookies = (req, res, next) => {
   // check if there is a current cookie
