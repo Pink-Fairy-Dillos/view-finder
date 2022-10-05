@@ -13,6 +13,19 @@ app.use(express.json());
 // cookie parser
 app.use(cookieParser());
 
+
+app.use('/build', express.static(path.join(__dirname, '../build')));
+// route handler to respond with main app
+
+app.get("/",
+(req, res) => {
+  res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+})
+
+
+app.use('/api', apiRouter);
+
+// session middleware
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(sessions({
   secret: 'thisisthesecretkey123',
@@ -20,18 +33,6 @@ app.use(sessions({
   cookie: { maxAge: oneDay },
   resave: false 
 }));
-
-app.use('/build', express.static(path.join(__dirname, '../build')));
-// route handler to respond with main app
-
-app.get("/",
-  (req, res) => {
-      res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-    })
-
-
-
-app.use('/api', apiRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => res.sendStatus(404));

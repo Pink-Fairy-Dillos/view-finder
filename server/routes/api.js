@@ -5,8 +5,7 @@ const locationController = require('../controllers/locationController.js');
 const captionsController = require('../controllers/captionsController.js');
 const loginController = require('../controllers/loginController.js');
 const signupController = require('../controllers/signupController.js');
-const cookieParser = require('cookie-parser');
-const sessions = require('express-session');
+const cookieController = require('../controllers/cookieController.js');
 
 router.post('/newLocation',
   locationController.geoCode,
@@ -36,20 +35,27 @@ router.get('/getPersonalList/:user',
 
 router.post('/signup',
   signupController.createUser,
+  cookieController.setCookie,
+  signupController.createSession,
   (req, res) => {
     console.log('signed up successfully');
     return res.status(200).json({});
   });
 
 router.post('/login', 
-  loginController.checkCredentials, 
-  loginController.setCookie,
+  loginController.checkCredentials,
+  loginController.checkCookies, 
   (req, res) => res.status(200).json(res.locals.user));
 
+router.post('/fetch-user',
+  loginController.fetchUser, 
+  (req, res) => {
+      return res.status(200).json({ message: 'user found', user: res.locals.user });
+  });
 
 router.delete('/logout', 
   (req, res) => {
-    req.session.destroy();
+    res.clearCookie();
     return res.redirect('/');
   });
 
