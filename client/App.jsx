@@ -4,7 +4,7 @@ import Map from '/client/components/Map.jsx';
 import Sidebar from '/client/components/Sidebar.jsx'
 import styles from '/client/stylesheets/styles.css'
 import Navbar from '/client/components/Navbar.jsx';
-
+import List from '/client/components/List.jsx';
 const App = props => {
 
   // Using state to store, update and display location pins on the map.
@@ -33,12 +33,17 @@ const App = props => {
   }, savedLocations)
 
   return (
-      
-      <div id="maindiv">
-        <div id="navbar"> <Navbar /> </div> 
+    
+    <div id="maindiv">
+      <div id="navbar"> <Navbar /> </div> 
         <div id="mapSidebarContainer" >
-          <div id="mapdiv"> <Map savedLocations={savedLocations} /> </div>
-          <div id="sidebardiv"> <Sidebar savedLocations={savedLocations} setSavedLocations={setSavedLocations} userData={userData} setAddress={setAddress}/> </div>
+          <div className="List-Map">
+            <div id="list"> <List savedLocations={savedLocations} /> </div>
+            <div id="mapdiv"> <Map savedLocations={savedLocations} /> </div>
+          </div>
+          <div className="Side-Bar">
+            <div id="sidebardiv"> <Sidebar savedLocations={savedLocations} setSavedLocations={setSavedLocations} userData={userData} setAddress={setAddress}/> </div>
+          </div>
         </div>
 
       </div>
