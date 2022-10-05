@@ -28,9 +28,11 @@ function List (props) {
     }
 
   return (
-    <div>
-      <h1>DropDown Menu</h1>
+    <div id='listContainer'>
+		<h1>DropDown Menu</h1>
+		<div id='postContainer'>
       {list}
+		</div>
     </div>
   )
 }
