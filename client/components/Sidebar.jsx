@@ -5,17 +5,12 @@ const Sidebar = props => {
 
   const savedLocations = props.savedLocations;
   const setSavedLocations = props.setSavedLocations;
- 
 
     return (
-        
-        // <div style={{"color": "black", "backgroundColor": "gray"}} >
-        // HI SOME TEXT FROM THE SIDEBAR
-        // </div>
 
         <div id="sidebarContainer">
           <p id="sidebarText">Submit a cool photo location below:</p>
-          <Input savedLocations={savedLocations} setSavedLocations={setSavedLocations} userData={props.userData} setAddress={props.setAddress}/>
+          <Input userId={props.userId} savedLocations={savedLocations} setSavedLocations={setSavedLocations} userData={props.userData} setAddress={props.setAddress}/>
         </div>
        
     )
