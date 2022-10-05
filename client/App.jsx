@@ -9,6 +9,8 @@ const App = props => {
 
   // Using state to store, update and display location pins on the map.
   const [savedLocations, setSavedLocations] = useState([]);
+  const [savedUser, setSavedUser] = useState(""); //the user logged in - populate at post request at log in
+  const [savedStatus, setSavedStatus] = useState(null) //when user is logged in status changed to true
 
   // Using state to receive user input about new locations to pass to database.
   const [userData, setAddress] = useState({
@@ -17,7 +19,8 @@ const App = props => {
     city: '',
     state: '',
     zip: '',
-    caption: ''
+    caption: '',
+    category: ''
   })
 
   // UseEffect to update the saved locations after rendering. 
@@ -35,7 +38,7 @@ const App = props => {
   return (
     
     <div id="maindiv">
-      <div id="navbar"> <Navbar /> </div> 
+      <div id="navbar"> <Navbar savedUser={savedUser} setSavedUser={setSavedUser} savedStatus={savedStatus} setSavedStatus={setSavedStatus}/> </div> 
         <div id="mapSidebarContainer" >
           <div className="List-Map">
             <div id="list"> <List savedLocations={savedLocations} /> </div>
