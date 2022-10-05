@@ -1,30 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 const Login = ({ setSavedUser, setLoginModal, setUserLocations, setUserId }) => {
-  const [user, setUser] = useState({});
-  const [fetchingUser, setFetchingUser] = useState(true)
-
-  useEffect(() => {
-    fetch('api/fetch-user', {
-            method: 'POST',
-            withCredentials: true,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-            },
-        })
-        .then((response) => {
-            console.log(`Fetched session for user: ${response.data.user}`)
-            setUser(response.data.user)
-        })
-        .catch((error) => {
-            console.log(`No user exists with the current session... ${error}`)
-        })
-        .finally(() => {
-            setFetchingUser(false)
-        })
-}, [])
-
-
 function handleLogin(){
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -44,15 +20,21 @@ function handleLogin(){
     })
       .then(res => res.json())
       .then(data => {
-        setSavedUser(username);
-        setUserId(user_id); // no need if cookies
-        const fetchString = `api/getList/${data.username}`
+        console.log(data);
+        setSavedUser(data.username);
+        setUserId(data.id); // getting ID from backend (no need if cookies)
+        const fetchString = `/api/getPersonalList/${data.username}`
+        console.log(fetchString)
         fetch(fetchString)
         .then(res => res.json())
         .then((locations) => {
-          if (!Array.isArray(locations)) locations = [];
+          if (!Array.isArray(locations)) {
+            locations = [];
+          }
             setUserLocations(locations);
+            console.log(locations);
         })
+        .then(()=>console.log('user locations updated'))
       })
 
       .catch(err => console.log('Login error: ', err));

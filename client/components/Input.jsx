@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 
 
 const Input = (props) => {
-
+    const userId = props.userId;
     const savedLocations = props.savedLocations;
     const setSavedLocations = props.setSavedLocations;
 
@@ -48,22 +48,25 @@ const Input = (props) => {
     // Addresses are geocded by the back end into lat/long coordinates that the
     // map library uses.
     const submitFunc = () => {
+        const userDataWithUserID = {...userData, created_by_id: userId }
+        console.log(userDataWithUserID)
         fetch('/api/newLocation', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(userData)
+            body: JSON.stringify(userDataWithUserID)
         })
-        .then((res) => setSavedLocations(res.body)) // REFACTOR
-        
+        .then((res) => res.json())
+        .then((res) => setSavedLocations(res))
+        .then(fetch)
+        .catch(err => console.log('error after submit'))
     }
 
     return (
 
         <div> 
-           <form onSubmit={submitFunc}>
            <label>
             <div className="inputContainer" > 
                 <input
@@ -141,9 +144,8 @@ const Input = (props) => {
             </div> 
            </label>
            <div className="inputContainer">
-           <input type="submit" />
+           <button onClick={submitFunc}>Submit</button>
            </div>
-           </form>
            <div id="instructions"> Welcome to Viewfinder! Check out the pins on the map for cool spots for a photo opportunity. If you know an instragammable landmark or viewpoint, submit it using the forms above! </div>
         </div>
     )

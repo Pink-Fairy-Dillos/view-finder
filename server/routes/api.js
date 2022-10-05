@@ -20,17 +20,18 @@ router.post('/newLocation',
   router.get('/getList/',
   locationController.getLocationsAndCaptions,
   (req, res) => {
-    console.log('made it to the router');
+    console.log('made it to the getList router');
     return res.status(200).json(res.locals.bigList);
   })
-
-router.get('/getList/:user',
+  
+router.get('/getPersonalList/:user',
   locationController.getUserLocations,
   locationController.getLocationsAndCaptions,
   (req, res) => {
-    console.log('made it to the router');
+    console.log('made it to the getList for User router');
     return res.status(200).json(res.locals.bigList);
   })
+
 
 router.post('/signup',
   signupController.createUser,
@@ -44,15 +45,13 @@ router.post('/signup',
 router.post('/login', 
   loginController.checkCredentials,
   loginController.checkCookies, 
-  (req, res) => res.status(200).json({}));
+  (req, res) => res.status(200).json(res.locals.user));
 
 router.post('/fetch-user',
   loginController.fetchUser, 
   (req, res) => {
       return res.status(200).json({ message: 'user found', user: res.locals.user });
   });
-
-
 
 router.delete('/logout', 
   (req, res) => {

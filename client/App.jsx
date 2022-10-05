@@ -46,7 +46,7 @@ const App = props => {
           <div className="List-Map">
             <div id="list"> <List savedLocations={savedLocations} /> </div>
             <div id="mapdiv"> <Map savedLocations={savedLocations} /> </div>
-            <div id="favoritesdiv"> <Favorites savedLocations={savedLocations}/> </div>
+            <div id="favoritesdiv"> <Favorites userLocations={userLocations}/> </div>
           </div>
           <div className="Side-Bar">
             <div id="sidebardiv"> <Sidebar savedLocations={savedLocations} setSavedLocations={setSavedLocations} userData={userData} setAddress={setAddress}/> </div>

@@ -1,10 +1,10 @@
 import React, { Component, useState } from 'react';
 import Post from "./Post.jsx"
-function Favorites (props) {
+
+
+const Favorites = ({ userLocations }) => {
 
   // This is the array of saved locations pulled from the database
-  const userLocations = props.userLocations;
-
 
 	let userList = [];
   if (userLocations){
