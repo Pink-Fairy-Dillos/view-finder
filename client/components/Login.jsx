@@ -21,15 +21,21 @@ function handleLogin(){
     })
       .then(res => res.json())
       .then(data => {
-        setSavedUser(username);
-        setUserId(user_id); // no need if cookies
-        const fetchString = `api/getList/${data.username}`
+        console.log(data);
+        setSavedUser(data.username);
+        setUserId(data.id); // getting ID from backend (no need if cookies)
+        const fetchString = `/api/getPersonalList/${data.username}`
+        console.log(fetchString)
         fetch(fetchString)
         .then(res => res.json())
         .then((locations) => {
-          if (!Array.isArray(locations)) locations = [];
+          if (!Array.isArray(locations)) {
+            locations = [];
+          }
             setUserLocations(locations);
+            console.log(locations);
         })
+        .then(()=>console.log('user locations updated'))
       })
 
       .catch(err => console.log('Login error: ', err));

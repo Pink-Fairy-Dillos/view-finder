@@ -21,17 +21,18 @@ router.post('/newLocation',
   router.get('/getList/',
   locationController.getLocationsAndCaptions,
   (req, res) => {
-    console.log('made it to the router');
+    console.log('made it to the getList router');
     return res.status(200).json(res.locals.bigList);
   })
-
-router.get('/getList/:user',
+  
+router.get('/getPersonalList/:user',
   locationController.getUserLocations,
   locationController.getLocationsAndCaptions,
   (req, res) => {
-    console.log('made it to the router');
+    console.log('made it to the getList for User router');
     return res.status(200).json(res.locals.bigList);
   })
+
 
 router.post('/signup',
   signupController.createUser,
