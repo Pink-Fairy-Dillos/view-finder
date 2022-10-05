@@ -1,7 +1,7 @@
 {
   "name": "view-finder",
   "version": "1.0.0",
-  "description": "",
+  "description": "Hello ITERATION GROUP welcome to our codebase! We are adding comments to guide you. We will use STRETCH and REFACTOR as keywords to mark places you might want to check out, ctrl-F to find them!",
   "main": "./client/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -26,6 +26,10 @@
     "cookie-parser": "^1.4.6",
     "cross-env": "^7.0.3",
     "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "firebase": "^9.10.0",
+    "firebase-admin": "^11.0.1",
+    "firebase-functions": "^3.24.1",
     "html-webpack-plugin": "^5.5.0",
     "mongoose": "^6.6.2",
     "node": "^18.9.1",

@@ -31,6 +31,27 @@ body, html {
   color: black;
   letter-spacing: 7px;
 }
+#signupModal{
+  position: fixed;
+  height: 100px;
+  width: 200px;
+  top: 10%;
+   background-color: white;
+  left: 50%;
+  margin-left: -100px;
+  z-index: 100;
+}
+
+#loginModal{
+  position: fixed;
+  height: 100px;
+  width: 200px;
+  top: 10%;
+   background-color: white;
+  left: 50%;
+  margin-left: -100px;
+  z-index: 100;
+}
 
 #logoV {
   height: 40px;
@@ -46,7 +67,7 @@ body, html {
 }
 
 #sidebarContainer {
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   background-color: white;
   color: black;
@@ -64,10 +85,37 @@ body, html {
 }
 
 #mapSidebarContainer {
-  display: grid;
-  grid-template-columns: 4fr 2fr;
-  grid-column-gap: .5fr;
+  display: flex;
+	flex-direction: column;
 }
+
+
+.List-Map{
+	display: grid;
+	grid-template-columns: 1fr 4fr 1fr;
+	grid-column-gap: 0.5fr;
+}
+
+#list{
+  border: 1px solid gainsboro;
+}
+
+#listContainer{
+
+	border: 1px solid gainsboro;
+	overflow-y: scroll;
+	}
+
+.postContainer{
+	margin: 5px;
+	border: 1px solid gainsboro;
+	width: 95%;
+	height: 100px;
+}
+
+.mapdiv{
+margin-right: 100px;
+} 
 
 form {
   padding-top: 45px;
