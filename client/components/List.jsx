@@ -29,7 +29,7 @@ function List (props) {
 
   return (
     <div id='listContainer'>
-		<h1>DropDown Menu</h1>
+		<h1>Places:</h1>
 		<div id='postContainer'>
       {list}
 		</div>

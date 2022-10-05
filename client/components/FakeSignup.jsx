@@ -29,6 +29,7 @@ function signupClick() {
       })
       .catch(err => console.log('Login error: ', err));
   }
+
 const Signup = () => {
   return (
     <div>Signup

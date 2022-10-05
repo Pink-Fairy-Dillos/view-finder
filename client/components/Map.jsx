@@ -6,8 +6,8 @@ import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/ap
 
 // This sets the map size in the app. This gets passed into the GoogleMap component in the mapContainerStyle attribute
 const mapStyle = {
-    height: '100vh',
-    width: '100%',
+    height: '80vh',
+    width: '80%',
   }
 
 // This constant sets the center point of the map, currently Los Angeles
