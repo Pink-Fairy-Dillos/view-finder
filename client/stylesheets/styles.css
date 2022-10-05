@@ -31,6 +31,27 @@ body, html {
   color: black;
   letter-spacing: 7px;
 }
+#signupModal{
+  position: fixed;
+  height: 100px;
+  width: 200px;
+  top: 10%;
+   background-color: white;
+  left: 50%;
+  margin-left: -100px;
+  z-index: 100;
+}
+
+#loginModal{
+  position: fixed;
+  height: 100px;
+  width: 200px;
+  top: 10%;
+   background-color: white;
+  left: 50%;
+  margin-left: -100px;
+  z-index: 100;
+}
 
 #logoV {
   height: 40px;
@@ -71,7 +92,7 @@ body, html {
 
 .List-Map{
 	display: grid;
-	grid-template-columns: 1fr 4fr;
+	grid-template-columns: 1fr 4fr 1fr;
 	grid-column-gap: 0.5fr;
 }
 

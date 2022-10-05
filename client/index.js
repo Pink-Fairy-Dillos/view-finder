@@ -5,8 +5,8 @@ import Login from './components/FakeLogin.jsx';
 import Signup from './components/FakeSignup.jsx';
 
 ReactDOM.render(
-    // <App />,
+    <App />,
     // <Login />,
-    <Signup />,
+    // <Signup />,
     document.getElementById('app'),
 );

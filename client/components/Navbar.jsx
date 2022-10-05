@@ -5,8 +5,10 @@ import Signup from './Signup.jsx';
 import Login from './Login.jsx';
 
 const Navbar = props => {
+  const setSavedUser = props.setSavedUser;
   const savedUser = props.savedUser;
   const savedStatus = props.savedStatus;
+  const setUserId = props.setUserId;
   // this is all for the modal
   const [hasClickedSignUp, setSignUpModal] = useState(false);
   const [hasClickedLogIn, setLoginModal] = useState(false);
@@ -25,20 +27,14 @@ const Navbar = props => {
         
         <div id="navbarContainer">
           <img id="arrow" src={arrow}/>
-          <p id="navbarText">VIEWFINDER</p>
+          <p id="navbarText">IOLENCE</p>
           <img id="logoV" src={logoV}/>
-        
-          {/* The search from was not implemented yet, but could be a good stretch feature to incorporate google maps autocomplete */}
-          {/* <form id="searchForm" >
-          <input type="text" placeholder="Search locations" /> 
-          <input type="submit" />
-          </form> */}
-          {/* <input type="text" placeholder="Search locations" /> 
-          <input type="submit" /> */}
-          <button onClick={signupModal}>Sign Up</button>
-          {hasClickedSignUp ? <Signup /> : null}
-          <button onClick={loginModal}>Log In</button>
-          {hasClickedLogIn ? <Login savedUser={savedUser} savedStatus={savedStatus}/> : null}
+
+          {!savedUser ? <button onClick={signupModal}>Sign Up</button> : <span>Welcome {savedUser}! </span>}
+          {hasClickedSignUp ? <Signup setSavedUser={setSavedUser} setSignUpModal={setSignUpModal} setLoginModal={setLoginModal}/> : null}
+          {!savedUser ? <button onClick={loginModal}>Log In</button>: null}
+          {hasClickedLogIn ? <Login setSavedUser={setSavedUser} savedStatus={savedStatus} setLoginModal={setLoginModal} setUserLocations={props.setUserLocations} setUserId={setUserId}/> : null}
+          {savedUser ? <button>Log Out</button>: null}
         </div>
        
     )

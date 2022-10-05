@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-const Signup = () => {
-
+const Signup = ({ setSavedUser, setSignUpModal, setLoginModal }) => {
+  
 function handleSignup(){
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+    console.log(username, password);
+    if (!username) alert('Need to enter a username!');
+    if (!password) alert('Need to enter a password!');
+    
     const body = {username, password};
-    //fetch
+    
+    setSignUpModal(); 
     fetch('/api/signup', {
         method: 'POST',
         headers: {
@@ -15,21 +20,31 @@ function handleSignup(){
         body: JSON.stringify(body)
     })
       .then(res => res.json())
-      .then(data => console.log('now go to login modal'))
-      .catch(err => {
-        console.log(err);
+      .then(data => { 
+        if (data === 'failed login') {
+          // send alert if login attemp failed
+          alert('you have entered an incorrect username/password')
+        } else {
+          // if verified redirect to homepage
+          console.log('signed up on front end');
+          setLoginModal();
+          
+
+
+        }
       })
+      .catch(err => console.log('Login error: ', err));
+    }
 
   return (
-    <div>
+    <div id='signupModal'>
       <label>Username:</label>
-      <input id='username'></input>
+      <input type='text' id='username'></input>
       <label>Password:</label>
-      <input id='password'></input>
+      <input type='password' id='password'></input>
       <button id="signup-btn" onClick={handleSignup}>Sign Up</button>
     </div>
   )
-}
 }
 
 

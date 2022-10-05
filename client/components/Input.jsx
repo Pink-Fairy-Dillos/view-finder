@@ -11,20 +11,35 @@ const Input = (props) => {
 
     // This function takes values from input fields and updates the userData piece of state,
     const handleChange = (e, property) => {
-        if (property === 'zip') { // this is to coerece the zip code inputted as a string, into an integer 
+        if (property === 'public'){
+            let updatedValue = {};
+            const publicVal = document.getElementById('public'); 
+            if(publicVal.checked){
+                updatedValue = {[property]: false};
+            }
+            else{
+                updatedValue = {[property]: true};
+            }
+            setAddress(userData => ({
+                ...userData,
+                ...updatedValue
+            }))
+        }
+        else if (property === 'zip') { // this is to coerece the zip code inputted as a string, into an integer 
             let updatedValue = {};
         updatedValue = {[property]: parseInt(e.target.value)};
         setAddress(userData => ({
             ...userData,
             ...updatedValue
         }))}
-        else {
+        else { 
             let updatedValue = {};
             updatedValue = {[property]: e.target.value};
             setAddress(userData => ({
                 ...userData,
                 ...updatedValue
-            }))}
+            }))
+        }
     }
 
     // This function submits user inputted data from input fields
@@ -110,10 +125,19 @@ const Input = (props) => {
                 <input
                 type="text"
                 name="category"
-                placeholder="cateogry"
+                placeholder="Category"
                 defaultValue={userData.caption}
                 onChange={(e) => handleChange(e, "category")}
                 />
+            </div>
+            <div className="inputContainer">
+                <label>Private</label>
+                <input 
+                id="public"
+                type="checkbox"
+                name="public"
+                defaultValue={userData.public}
+                onChange={(e) => handleChange(e, "public")}></input>
             </div> 
            </label>
            <div className="inputContainer">
