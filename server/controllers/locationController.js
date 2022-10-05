@@ -6,7 +6,7 @@ const locationController = {};
 locationController.geoCode = (req, res, next) => {
 
     const { street_address, city, state } = req.body;
-    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${street_address},+${city},+${state}&key=AIzaSyBRacG1Uw6S2XcqqqA50dnaTRUSwiJ2Gg4`)
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${street_address},+${city},+${state}&key=AIzaSyCFoPyNqG2llIbrRofZtn7hLdH4COjqTQ8`)
 
         .then((data) => data.json())
         .then((data) => {
@@ -38,10 +38,10 @@ locationController.geoCode = (req, res, next) => {
 //the location _id will then be passed on to be used so cave the entry in captions table with a reference to the location
 locationController.addLocation = (req, res, next) => {
     console.log('hello, from ADD LOCATION');
-    const { name, caption, zip } = req.body;
+    const { name, caption, zip, category_id } = req.body;
     const { street_address, city, state, lat, lng, formatted_address } = res.locals.newEntry;
-    const text = 'INSERT INTO locations(street_address, city, state, created_by_id, zip_code, lat, lng,  name, formatted_address) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING _id;';
-    const params = [street_address, city, state, null, zip, lat, lng, name, formatted_address];
+    const text = 'INSERT INTO locations(street_address, city, state, created_by_id, zip_code, lat, lng,  name, formatted_address, category) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING _id;';
+    const params = [street_address, city, state, null, zip, lat, lng, name, formatted_address, category_id];
 
     db.query(text, params, (err, res2) => {
         if (err) {

@@ -3,12 +3,13 @@ const express = require('express');
 const router = express.Router();
 const locationController = require('../controllers/locationController.js');
 const captionsController = require('../controllers/captionsController.js');
+const loginController = require('../controllers/loginController.js');
+const signupController = require('../controllers/signupController.js');
 
 router.post('/newLocation',
     locationController.geoCode,
     locationController.addLocation,
     captionsController.addCaption,
-
     locationController.getLocationsAndCaptions,
     (req, res) => {
         console.log('made it to the router');
@@ -22,8 +23,23 @@ router.get('/getList',
         return res.status(200).json(res.locals.bigList);
     })
 
+router.post('/signup',
+    signupController.createUser,
+    (req, res) => {
+        console.log('signed up successfully');
+        return res.status(200).json({});
+    });
 
+router.post('/login', 
+    loginController.checkCredentials, 
+    // loginController.setCookie,
+    (req, res) => res.status(200).json({}));
 
+router.delete('/logout', 
+    loginController.logout,
+    (req, res) => res.status(200).json('success'));
+
+    
 
 
 
