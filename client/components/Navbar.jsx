@@ -8,6 +8,7 @@ const Navbar = props => {
   const setSavedUser = props.setSavedUser;
   const savedUser = props.savedUser;
   const savedStatus = props.savedStatus;
+  const setUserId = props.setUserId;
   // this is all for the modal
   const [hasClickedSignUp, setSignUpModal] = useState(false);
   const [hasClickedLogIn, setLoginModal] = useState(false);
@@ -26,13 +27,13 @@ const Navbar = props => {
         
         <div id="navbarContainer">
           <img id="arrow" src={arrow}/>
-          <p id="navbarText">VIEWFINDER</p>
+          <p id="navbarText">IOLENCE</p>
           <img id="logoV" src={logoV}/>
 
           {!savedUser ? <button onClick={signupModal}>Sign Up</button> : <span>Welcome {savedUser}! </span>}
           {hasClickedSignUp ? <Signup setSavedUser={setSavedUser} setSignUpModal={setSignUpModal} setLoginModal={setLoginModal}/> : null}
           {!savedUser ? <button onClick={loginModal}>Log In</button>: null}
-          {hasClickedLogIn ? <Login setSavedUser={setSavedUser} savedStatus={savedStatus} setLoginModal={setLoginModal} setUserLocations={props.setUserLocations}/> : null}
+          {hasClickedLogIn ? <Login setSavedUser={setSavedUser} savedStatus={savedStatus} setLoginModal={setLoginModal} setUserLocations={props.setUserLocations} setUserId={setUserId}/> : null}
           {savedUser ? <button>Log Out</button>: null}
         </div>
        

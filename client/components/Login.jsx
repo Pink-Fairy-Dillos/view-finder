@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Login = ({ setSavedUser, setLoginModal, setUserLocations }) => {
+const Login = ({ setSavedUser, setLoginModal, setUserLocations, setUserId }) => {
   
 function handleLogin(){
     const username = document.getElementById('username').value;
@@ -22,13 +22,13 @@ function handleLogin(){
       .then(res => res.json())
       .then(data => {
         setSavedUser(username);
-        const fetchString = `api/getList/${data.user_id}`
+        setUserId(user_id); // no need if cookies
+        const fetchString = `api/getList/${data.username}`
         fetch(fetchString)
         .then(res => res.json())
         .then((locations) => {
           if (!Array.isArray(locations)) locations = [];
             setUserLocations(locations);
-
         })
       })
 

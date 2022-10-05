@@ -13,6 +13,7 @@ const App = props => {
   const [savedUser, setSavedUser] = useState(""); //the user logged in - populate at post request at log in
   const [savedStatus, setSavedStatus] = useState(null) //when user is logged in status changed to true
   const [userLocations, setUserLocations] = useState([]);
+  const [userId, setUserId] = useState('');
   // Using state to receive user input about new locations to pass to database.
   const [userData, setAddress] = useState({
     name: '',
@@ -21,7 +22,8 @@ const App = props => {
     state: '',
     zip: '',
     caption: '',
-    category: ''
+    category: '',
+    public: true,
   })
 
   // UseEffect to update the saved locations after rendering. 
@@ -39,7 +41,7 @@ const App = props => {
   return (
     
     <div id="maindiv">
-      <div id="navbar"> <Navbar savedUser={savedUser} setSavedUser={setSavedUser} savedStatus={savedStatus} setSavedStatus={setSavedStatus} setUserLocations={setUserLocations}/> </div> 
+      <div id="navbar"> <Navbar setUserId={setUserId} savedUser={savedUser} setSavedUser={setSavedUser} savedStatus={savedStatus} setSavedStatus={setSavedStatus} setUserLocations={setUserLocations}/> </div> 
         <div id="mapSidebarContainer" >
           <div className="List-Map">
             <div id="list"> <List savedLocations={savedLocations} /> </div>
