@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 function loginClick() {
     const username = document.getElementById('username').value;
@@ -31,11 +31,33 @@ function loginClick() {
   }
 
 const Login = () => {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    fetch('api/fetch-user', {
+            method: 'POST',
+            headers: {
+              'Content-type': 'application/json'
+            }
+        })
+        .then((data) => data.json())
+        .then((response) => {
+            setUser(response.user);
+        })
+        .catch((error) => {
+            console.log(`No user exists with the current session... ${error}`)
+        })
+}, [user])
+
+
   return (
     <div>
         <input type="text" id="username" placeholder="Username" />
         <input type="password" id="password" placeholder="Password" />
         <button type="submit" onClick={loginClick}>Login</button>
+        <div>
+            { user ? `Logged in as ${user}` : 'Not logged in'}
+        </div>
     </div>
   )
 }

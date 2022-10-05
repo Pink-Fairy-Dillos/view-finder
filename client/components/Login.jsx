@@ -1,7 +1,30 @@
 import React, { useState, useEffect } from 'react';
 
 const Login = ({ setSavedUser, setLoginModal, setUserLocations, setUserId }) => {
-  
+  const [user, setUser] = useState({});
+  const [fetchingUser, setFetchingUser] = useState(true)
+
+  useEffect(() => {
+    fetch('api/fetch-user', {
+            method: 'POST',
+            withCredentials: true,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            },
+        })
+        .then((response) => {
+            console.log(`Fetched session for user: ${response.data.user}`)
+            setUser(response.data.user)
+        })
+        .catch((error) => {
+            console.log(`No user exists with the current session... ${error}`)
+        })
+        .finally(() => {
+            setFetchingUser(false)
+        })
+}, [])
+
+
 function handleLogin(){
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
