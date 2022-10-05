@@ -106,6 +106,15 @@ const Input = (props) => {
                 onChange={(e) => handleChange(e, "caption")}
                 />
             </div> 
+            <div className="inputContainer">
+                <input
+                type="text"
+                name="category"
+                placeholder="cateogry"
+                defaultValue={userData.caption}
+                onChange={(e) => handleChange(e, "category")}
+                />
+            </div> 
            </label>
            <div className="inputContainer">
            <input type="submit" />
