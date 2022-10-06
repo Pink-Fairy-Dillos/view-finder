@@ -22,12 +22,10 @@ loginController.checkCredentials = (req, res, next) => {
       .then(dbResponse => {
         if (dbResponse.rows[0] === undefined) {
           // if nothing is found, return 401 status
-          console.log('not found');
-          return res.status(401).json('failed login');
+          return res.status(401).json({ message: 'no username found' });
         } else {
           // if record is found, compare password
           const { password } = dbResponse.rows[0];
-          console.log(`the hashed stored password is ${password}`);
           bcrypt.compare(req.body.password, password, (err, result) => { 
             // if bcrypt.compare returns an unknown error, return global error handler
             if (err) { 
@@ -47,44 +45,17 @@ loginController.checkCredentials = (req, res, next) => {
             return next()
             }
             else {
-              // if passwords don't match, return error
-              return next({
-                log: 'userController.verifyUser: ERROR: Incorrect password',
-                message: { err: 'Incorrect password' },
-              });
-            }
+              // if passwords don't match, return 401 status
+              return res.status(401).json({ message: 'incorrect password' });
+              }
           });
         }
       })
       .catch(err => {
         console.log(err);
         return next(createErr(err));
-      })
+      });
 };
-
-
-// loginController.setCookie = (req, res, next) => {
-  
-//     }
-  
-//   // add current user to sessions table in database
-//   const { user_id, username } = res.locals.user;
-//   const session_id = Math.random().toString();
-//   // creates cookie
-//   res.cookie('SSID', session_id);//add optionality to cookie?
-  
-//   // add cookie and user to sessions table in db
-//   const add = 'INSERT INTO sessions (session, user_id) VALUES ($1, $2);'
-//   db.query(add, [session_id, user_id])
-//   .then(res => {
-//     // console.log(res)
-//     return next();
-//   })
-//   .catch(err => next(createErr(err)));
-// };
-
-//   // req.cookies: { tracy: '0.023381441699068528' },
-//   // req.cookies: { SSID: '0.023381441699068528' },
 
 loginController.checkCookies = (req, res, next) => {
   // check if there is a current cookie
@@ -104,17 +75,15 @@ loginController.checkCookies = (req, res, next) => {
     .catch(err => { next(createErr(err)) });
 }
 
+// middleware if wanting to make fetch request to server to check if user is logged in
 loginController.fetchUser = (req, res, next) => {
   // check if there is a current cookie
-  console.log(`this is the cookie sent in request ${req.cookies.ssid}`);
-  // return next();
   const checkCookie = 'SELECT * FROM sessions WHERE $1 = username;';
   db.query(checkCookie, [req.cookies.ssid]) //
     .then(dbRes => {
-      // console.log('dbRes: ',dbRes.rows[0]);
-      //if there is no response, redirect
+      // if there is no response, return 'no user session found'
       if (dbRes.rows[0] === undefined) {
-        return res.status(401).json('no user session found');
+        return res.status(401).json({message: 'no user session found'});
       }
       // if there is a response, proceed
       else {

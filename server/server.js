@@ -5,13 +5,17 @@ const path = require('path');
 const PORT = 3000;
 const apiRouter = require('./routes/api.js')
 const cookieParser = require('cookie-parser');
-const sessions = require('express-session');
+// const fileUpload = require('express-fileupload');
+const morgan = require('morgan');
 
 
 app.use(express.json());
 
 // cookie parser
 app.use(cookieParser());
+
+// file upload
+app.use(morgan('dev'));
 
 
 app.use('/build', express.static(path.join(__dirname, '../build')));
@@ -25,14 +29,6 @@ app.get("/",
 
 app.use('/api', apiRouter);
 
-// session middleware
-const oneDay = 1000 * 60 * 60 * 24;
-app.use(sessions({
-  secret: 'thisisthesecretkey123',
-  saveUninitialized:true,
-  cookie: { maxAge: oneDay },
-  resave: false 
-}));
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => res.sendStatus(404));
