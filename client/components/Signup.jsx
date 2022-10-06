@@ -38,6 +38,7 @@ function handleSignup(){
 
   return (
     <div id='signupModal'>
+			<h3>Sign Up</h3>
       <label>Username:</label>
       <input type='text' id='username'></input>
       <label>Password:</label>

@@ -168,6 +168,16 @@ form {
   font-size: 1em;
 }
 
+.categories{
+	padding:10px;
+  margin:10px 0;
+  border: 2px solid #eee;
+  box-shadow:2px 2px 8px -5px black;
+  border-radius: 5px;
+  width: 275px;
+  font-size: 1em;
+}
+
 #instructions {
   font-family: sans-serif;
   align-items: center;

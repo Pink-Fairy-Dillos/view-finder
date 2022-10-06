@@ -115,6 +115,7 @@ useEffect(() => {
     // }
   
   return (
+
     <div id='listContainer'>
       <h1>Places:</h1>
       <label>PhotoSpot</label>
