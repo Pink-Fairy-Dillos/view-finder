@@ -24,7 +24,6 @@ const App = props => {
     caption: '',
     category: '',
     public: true,
-    created_by_id: '',
   })
 
   // UseEffect to update the saved locations after rendering. 
@@ -39,15 +38,6 @@ const App = props => {
       })
   }, savedLocations)
 
-  // useEffect(() => {
-  //   fetch('api/getList')
-  //     .then(res => res.json())
-  //     .then((locations) => {
-  //       if (!Array.isArray(locations)) locations = [];
-  //         setSavedLocations(locations);
-  //     })
-  // }, successfulSubmit )
-
   return (
     
     <div id="maindiv">
@@ -59,7 +49,7 @@ const App = props => {
             <div id="favoritesdiv"> <Favorites userLocations={userLocations}/> </div>
           </div>
           <div className="Side-Bar">
-            <div id="sidebardiv"> <Sidebar userId={userId} savedLocations={savedLocations} setSavedLocations={setSavedLocations} userData={userData} setAddress={setAddress}/> </div>
+            <div id="sidebardiv"> <Sidebar savedLocations={savedLocations} setSavedLocations={setSavedLocations} userData={userData} setAddress={setAddress}/> </div>
           </div>
         </div>
 

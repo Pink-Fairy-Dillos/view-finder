@@ -3,8 +3,8 @@ const db = require('../models/databaseModel.js');
 
 const locationController = {};
 
+// use google maps api to get location data
 locationController.geoCode = (req, res, next) => {
-
   const { street_address, city, state } = req.body;
   fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${street_address},+${city},+${state}&key=AIzaSyCFoPyNqG2llIbrRofZtn7hLdH4COjqTQ8`)
 
@@ -61,17 +61,7 @@ locationController.addLocation = (req, res, next) => {
   });
 }
 
-
-
-/*
-SELECT * FROM locations l
-LEFT OUTER JOIN captions c
-ON c.location_id = l._id
-
-*/
-
-// /api/getList(:user_id);
-
+// retrieve user-submitted locations
 locationController.getUserLocations = (req, res, next) => {
   console.log(req.params.user);
   const username = req.params.user;
@@ -95,14 +85,17 @@ locationController.getUserLocations = (req, res, next) => {
 
 }
 
+// join locations & captions tables
 locationController.getLocationsAndCaptions = (req, res, next) => {
   let text;
+  // if user is logged in, retrieve user-specific locations
   if (res.locals.user_id) {
     text = `SELECT * FROM locations l
             LEFT OUTER JOIN captions c
             ON c.location_id = l._id
             WHERE l.created_by_id = ${res.locals.user_id}`;
   }
+  // if user is not logged in, retrieve all public locations
   else {
     text = `SELECT * FROM locations l
         LEFT OUTER JOIN captions c
@@ -162,32 +155,23 @@ locationController.getLocationsAndCaptions = (req, res, next) => {
     })
 }
 
-
-//add a method to location controller obj called addLocation
-//in addLocation take req.body and use what came in address, city, state
-//to make request to google maps API
-//take response from fetch request and make query to DB with
-//a query string that posts a new entry to locations table
-//call next
-//call next with err and throw error where went wrong
-
-
-// From fetch get formatted address and geometry.location coordinates
-
-
-
-
-
-
-//https://maps.googleapis.com/maps/api/geocode/json?address=78333+Darby+Rd,+Indio,+CA&key=AIzaSyBRacG1Uw6S2XcqqqA50dnaTRUSwiJ2Gg4
-
-// '/charaters/:89'
+locationController.filterLocations = (req, res, next) => {
+  const text = `SELECT * FROM locations l LEFT OUTER JOIN captions c ON c.location_id = l._id WHERE l.category = $1;`;
+  db.query(text, [req.params.id])
+    .then(data => {
+      res.locals.bigList = data.rows;
+      console.log(res.locals.bigList);
+      next();
+    })
+    .catch((err) => {
+      console.log(err);
+      next({
+        log: 'Express error handler caught unknown middleware error',
+        status: 500,
+        message: { err: err },
+      })
+    })
+}
+      
 
 module.exports = locationController;
-
-
-// {
-//     "address" : "2804 Opryland Dr",
-//     "city" : "Nashville",
-//     "state" : "TN"
-// }
