@@ -3,9 +3,10 @@ import React, { Component, useState } from "react";
 
 const Input = (props) => {
     const userId = props.userId;
+    const savedUser = props.savedUser;
     const savedLocations = props.savedLocations;
     const setSavedLocations = props.setSavedLocations;
-
+    const setUserLocations = props.setUserLocations;
     const userData = props.userData;
     const setAddress = props.setAddress;
 
@@ -86,9 +87,50 @@ const Input = (props) => {
         })
         .then((res) => res.json())
         .then((res) => setSavedLocations(res))
+        .then(() => {
+            const fetchString = `/api/getPersonalList/${savedUser}`
+            fetch(fetchString)
+            .then(res => res.json())
+            .then((locations) => {
+              if (!Array.isArray(locations)) {
+                locations = [];
+              }
+                setUserLocations(locations);
+                console.log(locations);
+            })
+            .then(()=>console.log('user locations updated'))
+          }) 
+        //fetch request to userlocations
+        //set userlocations to whatever we get back from the server
+        .catch(err => console.log('error after submit'))
+    }
+
+    let variable;
+    const addImage = () => {
+        const fileUploader = document.getElementById('file');
+        console.log(fileUploader)
+        fetch('/api/images', {
+            method: 'POST',
+            body: fileUploader.value
+        })
+        .then((res) => res.json())
+        .then((res) => {
+            console.log(res);
+            })
         .then(fetch)
         .catch(err => console.log('error after submit'))
     }
+
+    // function addImage (event) {
+    //     var file = event.target.files[0];
+    //     var reader = new FileReader();
+    //     reader.onload = function(event) {
+    //       // The file's text will be printed here
+    //       console.log(event.target.result)
+    //     };
+      
+    //     reader.readAsText(file);
+    //   }
 
     return (
 
@@ -151,15 +193,22 @@ const Input = (props) => {
                 />
             </div>
 						<div className="inputContainer">
-						<label>
-							<input placeholder="Category" list="categories" name="category" defaultValue={userData.category} onChange={(e) => handleChange(e, "category")} onblur="this.readOnly=true"/>
-						</label>
-							<datalist id="categories">
-								<option className="categoryDropDown" value="photospot"/>
-								<option className="categoryDropDown" value="food"/>
-								<option className="categoryDropDown" value="hiking"/>
-								<option className="categoryDropDown" value="other"/>
-							</datalist>
+						{/* <label>
+                <input placeholder="Category" list="categories" name="category" defaultValue={userData.category} onChange={(e) => handleChange(e, "category")} onblur="this.readOnly=true" required/>
+            </label> */}
+                {/* <datalist id="categories">
+                    <option className="categoryDropDown" value="photospot"/>
+                    <option className="categoryDropDown" value="food"/>
+                    <option className="categoryDropDown" value="hiking"/>
+                    <option className="categoryDropDown" value="other"/>
+                </datalist> */}
+            <select required onChange={(e) => handleChange(e, "category")}>
+            <option>--Choose a Category--</option>
+            <option value="photospot">Photospot</option>
+            <option value="food">Food</option>
+            <option value="hiking">Hiking</option>
+            <option value="other">Other</option>
+            </select>
 							</div> 
             <div className="publicCheckBoxContainer">
                 <label>Private</label>
@@ -172,6 +221,14 @@ const Input = (props) => {
             </div> 
            </label>
            <div className="inputContainer">
+                    <input
+                    type="file"
+                    accept="image/*"
+                    name="neededimage"
+                    id="file"
+                    onChange={(e) => addImage(e)} 
+                    />
+                    <button onClick={(e) => addImage(e)}>Add Photo</button>
            <button onClick={submitFunc}>Submit</button>
            </div>
            <div id="instructions"> Welcome to Viewfinder! Check out the pins on the map for cool spots for a photo opportunity. If you know an instragammable landmark or viewpoint, submit it using the forms above! </div>
@@ -185,12 +242,3 @@ const Input = (props) => {
 
 
 export default Input;
-
-						//  <div className="inputContainer">
-						// 		 <input
-						// 		 type="text"
-						// 		 name="category"
-						// 		 placeholder="Category"
-						// 		 defaultValue={userData.category}
-						// 		 onChange={(e) => handleChange(e, "category")}
-						// 		 />
