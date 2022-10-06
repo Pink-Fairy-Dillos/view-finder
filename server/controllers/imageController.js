@@ -5,9 +5,9 @@ const imageController = {};
 
 imageController.uploadImage = (req, res, next) => {
   const { filename, mimetype, size } = req.file;
-  const { location_id } = req.body;
+  // const { location_id } = req.body;
   const filepath = req.file.path;
-  const text = 'INSERT INTO image_files(filename, filepath, mimetype, size, location_id) VALUES($1, $2, $3, $4, $5);';
+  const text = 'INSERT INTO image_files(filename, filepath, mimetype, size) VALUES($1, $2, $3, $4);';
   const params = [filename, filepath, mimetype, size];
     db.query(text, params, (err, res2) => {
       if (err) {

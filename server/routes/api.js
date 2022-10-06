@@ -19,6 +19,12 @@ router.post('/newLocation',
     return res.status(200).json(res.locals.bigList);
   })
 
+  router.get('/filter/:id',
+  locationController.filterLocations,
+  (req, res) => {
+    return res.status(200).json(res.locals.bigList);
+  });
+
   router.get('/getList/',
   locationController.getLocationsAndCaptions,
   (req, res) => {
@@ -33,12 +39,6 @@ router.get('/getPersonalList/:user',
     console.log('made it to the getList for User router');
     return res.status(200).json(res.locals.bigList);
   })
-
-router.get('/filter/:category'),
-  locationController.filterByCategory,
-  (req, res) => {
-    return res.status(200).json(res.locals.bigList);
-  };
 
 router.post('/signup',
   signupController.createUser,

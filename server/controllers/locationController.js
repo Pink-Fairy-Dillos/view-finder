@@ -156,24 +156,19 @@ locationController.getLocationsAndCaptions = (req, res, next) => {
 }
 
 locationController.filterLocations = (req, res, next) => {
-  const { category } = req.body;
-  let query = `SELECT * FROM locations l
-              LEFT OUTER JOIN captions c
-              ON c.location_id = l._id
-              WHERE l.category = ${category};`;
-
-  db.query(query)
+  const text = `SELECT * FROM locations l LEFT OUTER JOIN captions c ON c.location_id = l._id WHERE l.category = $1;`;
+  db.query(text, [req.params.id])
     .then(data => {
-      let newArr = entriesFormatter(data.rows);
-      res.locals.bigList = newArr;
+      res.locals.bigList = data.rows[0];
       console.log(res.locals.bigList);
       next();
     })
     .catch((err) => {
+      console.log(err);
       next({
         log: 'Express error handler caught unknown middleware error',
         status: 500,
-        message: { err: 'Unable to get locations in specified' },
+        message: { err: err },
       })
     })
 }
