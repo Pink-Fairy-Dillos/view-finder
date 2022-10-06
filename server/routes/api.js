@@ -1,4 +1,3 @@
-const app = require('../server');
 const express = require('express');
 const router = express.Router();
 const locationController = require('../controllers/locationController.js');
@@ -6,6 +5,9 @@ const captionsController = require('../controllers/captionsController.js');
 const loginController = require('../controllers/loginController.js');
 const signupController = require('../controllers/signupController.js');
 const cookieController = require('../controllers/cookieController.js');
+const imageController = require('../controllers/imageController.js');
+const multer = require('multer');
+const path = require('path');
 
 router.post('/newLocation',
   locationController.geoCode,
@@ -32,6 +34,11 @@ router.get('/getPersonalList/:user',
     return res.status(200).json(res.locals.bigList);
   })
 
+router.get('/filter/:category'),
+  locationController.filterByCategory,
+  (req, res) => {
+    return res.status(200).json(res.locals.bigList);
+  };
 
 router.post('/signup',
   signupController.createUser,
@@ -58,6 +65,25 @@ router.delete('/logout',
     res.clearCookie();
     return res.redirect('/');
   });
+
+
+// image upload handling
+const imageUpload = multer({
+    dest: 'images',
+});
+
+router.post('/images',
+  imageUpload.single('image'),
+  imageController.uploadImage,
+  (req, res) =>  
+  res.json({ success: true, filename: res.locals.filename })
+);
+
+router.get('/images/:filename',
+  imageController.getImage,
+  (req, res) => {
+  res.type(res.locals.mimetype).sendFile(res.locals.fullfilepath);
+});
 
 
     
