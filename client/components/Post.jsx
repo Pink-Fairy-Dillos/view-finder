@@ -32,7 +32,9 @@ const Post = props => {
 
 	return (
 		<div className='postContainer'>
-			{locCard}
+			{props.savedLocations.name}
+			{props.savedLocations.created_by_id}
+			{props.savedLocations.category}
 		</div>
 	)
 }

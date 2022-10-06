@@ -156,6 +156,20 @@ locationController.getLocationsAndCaptions = (req, res, next) => {
 }
 
 locationController.filterLocations = (req, res, next) => {
+/* selecting multiple categories to filter with
+
+query : SELECT * FROM locations l LEFT OUTER JOIN captions c ON c.location_id = l._id WHERE l.category = 1 OR l.category = 2 OR l.category 3;
+
+if req.body.categories.length = 1
+const text = `SELECT * FROM locations l LEFT OUTER JOIN captions c ON c.location_id = l._id WHERE l.category = $1;`;
+
+if req.body.categories.length = 2
+const text = `SELECT * FROM locations l LEFT OUTER JOIN captions c ON c.location_id = l._id WHERE l.category = $1 OR l.category = $2`;
+
+if req.body.categories.length = 3
+const text = `SELECT * FROM locations l LEFT OUTER JOIN captions c ON c.location_id = l._id WHERE l.category = $1 OR l.category = $2 OR l.category = $3`;
+
+*/
   const text = `SELECT * FROM locations l LEFT OUTER JOIN captions c ON c.location_id = l._id WHERE l.category = $1;`;
   db.query(text, [req.params.id])
     .then(data => {
