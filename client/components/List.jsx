@@ -1,15 +1,21 @@
 import React, { Component, useState, useEffect } from 'react';
 import Post from "./Post.jsx"
 function List (props) {
-
+  
   const [filter, setFilter] = useState(false);
-  // This is the array of saved locations pulled from the database
   const savedLocations = props.savedLocations;
+  // This is the array of saved locations pulled from the database
+  let initiallist = [];
+  for (let i = 0; i< savedLocations.length; i++){
+    initiallist.push(<Post savedLocations= {savedLocations[i]}/>)
+  }
+
   const [foodCheckBox, setFoodCheckBox] = useState(false);
   const [photospotCheckBox, setPhotoSpotCheckBox] = useState(false);
   const [hikingCheckBox, setHikingCheckBox] = useState(false);
   const [otherCheckBox, setOtherCheckBox] = useState(false);
-  const [listState, setListState] = useState([]);
+  const [listState, setListState] = useState(null);
+  const [hasClickedFilter, setHasClickedFilter] = useState(false);
 
 // This function takes values from input fields and updates the userData piece of state,
 const handleFilter = (e, property) => {
@@ -29,7 +35,9 @@ const handleFilter = (e, property) => {
   }
 
 const applyFilter = () => {
-  setFilter(!filter)
+    
+    setFilter(!filter)
+    setHasClickedFilter(true);
 
   // re render the page...
   // only rerender list and below
@@ -45,23 +53,23 @@ useEffect(() => {
     console.log('hiking', hikingCheckBox);
     console.log('other', otherCheckBox);
     for (let i = 0; i< savedLocations.length; i++){
-      let photospot = document.getElementById("photospot-checkbox"); //photospot.clicked = true means the photospot is clicked 
-      let food = document.getElementById("food-checkbox"); 
-      let hiking = document.getElementById("hiking-checkbox"); 
-      let other = document.getElementById("other-checkbox"); 
-        if (photospot.clicked && savedLocations[i].category === 1){
+      // let photospot = document.getElementById("photospot-checkbox"); //photospot.clicked = true means the photospot is clicked 
+      // let food = document.getElementById("food-checkbox"); 
+      // let hiking = document.getElementById("hiking-checkbox"); 
+      // let other = document.getElementById("other-checkbox"); 
+        if (photospotCheckBox && savedLocations[i].category === 1){
           list.push(<Post savedLocations= {savedLocations[i]} />)
          }
-        if (food.clicked && savedLocations[i].category === 2){
+        if (foodCheckBox && savedLocations[i].category === 2){
           list.push(<Post savedLocations= {savedLocations[i]} />)
         }
-        if (hiking.clicked && savedLocations[i].category === 3){
+        if (hikingCheckBox && savedLocations[i].category === 3){
           list.push(<Post savedLocations= {savedLocations[i]} />)
         }
-        if (other.clicked && savedLocations[i].category === 4){
+        if (otherCheckBox && savedLocations[i].category === 4){
           list.push(<Post savedLocations= {savedLocations[i]} />)
         }
-        if (!other.clicked && !hiking.clicked && !food.clicked && !photospot.clicked){
+        if (!photospotCheckBox && !hikingCheckBox && !foodCheckBox && !otherCheckBox){
           list.push(<Post savedLocations= {savedLocations[i]} />)
         }
       }
@@ -69,13 +77,8 @@ useEffect(() => {
 }, [filter])
 
 
-  useEffect(() => {
-    let list = [];
-    for (let i = 0; i< savedLocations.length; i++){
-      list.push(<Post savedLocations= {savedLocations[i]}/>)
-    }
-        setListState(list);
-  },[])
+
+
 
 
 
@@ -104,9 +107,10 @@ useEffect(() => {
       //   if (other.clicked && savedLocations[i].category === 3){
       //     list.push(<Post savedLocations= {savedLocations[i]} />)
       //   }
-        // if (!filter){
-          // list.push(<Post savedLocations= {savedLocations[i]} />)
-          // }
+      // let list = [];
+      //   if (!filter){
+      //     list.push(<Post savedLocations= {savedLocations[i]} />)
+      //     }
         // }
     // }
   
@@ -157,7 +161,7 @@ useEffect(() => {
 
       <div id='scrollContainer'>
         <div id='postContainer'>
-          {listState}
+          {hasClickedFilter ? listState: initiallist}
         </div>
       </div>
     </div>
