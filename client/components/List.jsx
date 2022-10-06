@@ -19,13 +19,27 @@ const handleFilter = (e, property) => {
   }
 
 const applyFilter = () => {
-
+  setFilter(!filter)
   // re render the page...
   // only rerender list and below
 }
-  
+  // api/images/
+// {id, category: 1} 1: photospot, 2: food, 3: hiking, 4: other
 	let list = [];
     for (let i = 0; i< savedLocations.length; i++){
+
+      // if (filter){
+      //  let photospot = document.getElementById('photospot-checkbox');
+      // //  let food = document.getElementById('food-checkbox');
+      //   if (photospot.checked){
+      //     savedLocations.filter()
+      //   }
+
+      //   // /api/filter/${#}
+
+
+      // }
+      // displays all
       if (!filter){
         list.push(<Post savedLocations= {savedLocations[i]} />)
       }
