@@ -39,6 +39,7 @@ function MyComponent(props) {
 
   // Refer to the slim google maps API library documentation for built in methods an props
   return (
+    <div className="max-w-m">
     <LoadScript
      // Add in your own Google Maps API key here
       googleMapsApiKey="AIzaSyBRacG1Uw6S2XcqqqA50dnaTRUSwiJ2Gg4"
@@ -73,6 +74,7 @@ function MyComponent(props) {
         <></>
       </GoogleMap>
     </LoadScript>
+    </div>
   )
 }
 

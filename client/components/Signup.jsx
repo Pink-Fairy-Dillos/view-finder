@@ -37,13 +37,12 @@ function handleSignup(){
     }
 
   return (
-    <div id='signupModal'>
-			<h3>Sign Up</h3>
+    <div className="p-3 w-40 bg-orange-50 shadow-xl rounded-lg flex flex-col border border-orange-100">
       <label>Username:</label>
-      <input type='text' id='username'></input>
+      <input className="bg-white border border-slate-100 rounded" type='text' id='username'></input>
       <label>Password:</label>
       <input type='password' id='password'></input>
-      <button id="signup-btn" onClick={handleSignup}>Sign Up</button>
+      <button class="p-1" onClick={handleSignup}>Sign Up</button>
     </div>
   )
 }

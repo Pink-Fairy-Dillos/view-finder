@@ -41,13 +41,15 @@ function handleLogin(){
     }
   
   return (
-    <div id='loginModal'>
+    <div className="p-3 w-40 bg-orange-50 shadow-xl rounded-lg flex flex-col border border-orange-100">
 			<h3>Login</h3>
       <label>Username:</label>
       <input type='text' id='username'></input>
       <label>Password:</label>
       <input type='password' id='password'></input>
+      <div>
       <button id="login-btn" onClick={handleLogin}>Login</button>
+      </div>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
-import logoV from '../images/V.png';
-import arrow from '../images/Arrow.png';
+import logo from './images/logo3.png';
+// import arrow from '../images/Arrow.png';
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
 
@@ -25,17 +25,23 @@ const Navbar = props => {
 
     return (
         
-        <div id="navbarContainer">
-          <img id="arrow" src={arrow}/>
-          <p id="navbarText">IOLENCE</p>
-          <img id="logoV" src={logoV}/>
-
-          {!savedUser ? <button onClick={signupModal}>Sign Up</button> : <span>Welcome {savedUser}! </span>}
-          {hasClickedSignUp ? <Signup setSavedUser={setSavedUser} setSignUpModal={setSignUpModal} setLoginModal={setLoginModal}/> : null}
-          {!savedUser ? <button onClick={loginModal}>Log In</button>: null}
+      <header className="fixed z-50 w-full p-4 bg-orange-300">
+          <div className="md:flex w-full h-full">
+            <div className ="flex items-center ml-auto gap-2">
+            <div className="relative">
+              {!savedUser ? <button className="justify-right bg-orange-400 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded" onClick={loginModal}>Log In</button>: null}
           {hasClickedLogIn ? <Login setSavedUser={setSavedUser} savedStatus={savedStatus} setLoginModal={setLoginModal} setUserLocations={props.setUserLocations} setUserId={setUserId}/> : null}
           {savedUser ? <button>Log Out</button>: null}
-        </div>
+            </div>
+            <div className="relative">
+            {!savedUser ? <button className="bg-orange-400 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded"
+            Button onClick={signupModal}>Sign Up</button> : <span>Welcome {savedUser}! </span>}
+              {hasClickedSignUp ? <Signup setSavedUser={setSavedUser} setSignUpModal={setSignUpModal} setLoginModal={setLoginModal}/> : null}
+              </div>
+            </div>
+            </div>
+
+        </header>
        
     )
 }

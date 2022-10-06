@@ -8,7 +8,7 @@ const Sidebar = props => {
 
     return (
 
-        <div id="sidebarContainer">
+        <div className="h-screen w-16 menu bg-white text-white px-4 flex items-center nunito static fixed shadow">
           <p id="sidebarText">Submit a cool photo location below:</p>
           <Input userId={props.userId} savedLocations={savedLocations} setSavedLocations={setSavedLocations} userData={props.userData} setAddress={props.setAddress}/>
         </div>

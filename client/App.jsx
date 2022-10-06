@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 
 import Map from '/client/components/Map.jsx';
 import Sidebar from '/client/components/Sidebar.jsx'
-import styles from '/client/stylesheets/styles.css'
+import styles from '/client/styles.css'
 import Navbar from '/client/components/Navbar.jsx';
 import List from '/client/components/List.jsx';
 import Favorites from '/client/components/Favorites.jsx';
@@ -40,21 +40,23 @@ const App = props => {
 
   return (
     
-    <div id="maindiv">
-      <div id="navbar"> <Navbar setUserId={setUserId} savedUser={savedUser} setSavedUser={setSavedUser} savedStatus={savedStatus} setSavedStatus={setSavedStatus} setUserLocations={setUserLocations}/> </div> 
-        <div id="mapSidebarContainer" >
-          <div className="List-Map">
-            <div id="list"> <List savedLocations={savedLocations} /> </div>
-            <div id="mapdiv"> <Map savedLocations={savedLocations} /> </div>
-            <div id="favoritesdiv"> <Favorites userLocations={userLocations}/> </div>
-          </div>
+    <div>
+      <div className="w-screen h-auto flex flex-col font-bold"> <Navbar setUserId={setUserId} savedUser={savedUser} setSavedUser={setSavedUser} savedStatus={savedStatus} setSavedStatus={setSavedStatus} setUserLocations={setUserLocations}/> 
+      </div> 
+            <div className="pt-10"> 
+            <div>
+            <List savedLocations={savedLocations} /> 
+            </div>
+            <div>
+            <Map savedLocations={savedLocations} /> 
+            </div>
+            </div>
+            <div id="favoritesdiv"> <Favorites userLocations={userLocations}/> 
+            </div>
           <div className="Side-Bar">
             <div id="sidebardiv"> <Sidebar savedLocations={savedLocations} setSavedLocations={setSavedLocations} userData={userData} setAddress={setAddress}/> </div>
           </div>
         </div>
-
-      </div>
-      
   )
 }
 
