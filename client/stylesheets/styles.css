@@ -97,18 +97,25 @@ body, html {
 }
 
 #list{
-  border: 1px solid gainsboro;
+  border: 1px solid yellow;
 }
 
 #listContainer{
 
-	border: 1px solid gainsboro;
-	overflow-y: scroll;
+	border: 1px solid grainsboro;
+  background-color: gold;
+  /* min-width: 250px; */
 	}
 
+  #scrollContainer {
+    overflow-y: scroll;
+    max-height: 800px;
+  }
 .postContainer{
+  overflow-y: scroll;
 	margin: 5px;
-	border: 1px solid gainsboro;
+	border: 1px solid grainsboro;
+  background-color: tan;
 	width: 95%;
 	height: 100px;
 }
