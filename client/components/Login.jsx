@@ -43,6 +43,7 @@ function handleLogin(){
   
   return (
     <div id='loginModal'>
+			<h3>Login</h3>
       <label>Username:</label>
       <input type='text' id='username'></input>
       <label>Password:</label>

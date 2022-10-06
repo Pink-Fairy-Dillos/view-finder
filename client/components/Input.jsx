@@ -39,6 +39,7 @@ const Input = (props) => {
                 ...userData,
                 ...updatedValue
             }))
+						console.log(userData);
         }
     }
 
@@ -123,17 +124,19 @@ const Input = (props) => {
                 defaultValue={userData.caption}
                 onChange={(e) => handleChange(e, "caption")}
                 />
-            </div> 
-            <div className="inputContainer">
-                <input
-                type="text"
-                name="category"
-                placeholder="Category"
-                defaultValue={userData.caption}
-                onChange={(e) => handleChange(e, "category")}
-                />
             </div>
-            <div className="inputContainer">
+						<div className="inputContainer">
+						<label>
+							<input placeholder="Category" list="categories" name="category" defaultValue={userData.category} onChange={(e) => handleChange(e, "category")} onblur="this.readOnly=true"/>
+						</label>
+							<datalist id="categories">
+								<option className="categoryDropDown" value="photospot"/>
+								<option className="categoryDropDown" value="food"/>
+								<option className="categoryDropDown" value="hiking"/>
+								<option className="categoryDropDown" value="other"/>
+							</datalist>
+							</div> 
+            <div className="publicCheckBoxContainer">
                 <label>Private</label>
                 <input 
                 id="public"
@@ -157,3 +160,12 @@ const Input = (props) => {
 
 
 export default Input;
+
+						//  <div className="inputContainer">
+						// 		 <input
+						// 		 type="text"
+						// 		 name="category"
+						// 		 placeholder="Category"
+						// 		 defaultValue={userData.category}
+						// 		 onChange={(e) => handleChange(e, "category")}
+						// 		 />
