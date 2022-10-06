@@ -1,29 +1,92 @@
-const app = require('../server');
 const express = require('express');
 const router = express.Router();
 const locationController = require('../controllers/locationController.js');
 const captionsController = require('../controllers/captionsController.js');
+const loginController = require('../controllers/loginController.js');
+const signupController = require('../controllers/signupController.js');
+const cookieController = require('../controllers/cookieController.js');
+const imageController = require('../controllers/imageController.js');
+const multer = require('multer');
+const path = require('path');
 
 router.post('/newLocation',
-    locationController.geoCode,
-    locationController.addLocation,
-    captionsController.addCaption,
+  locationController.geoCode,
+  locationController.addLocation,
+  captionsController.addCaption,
+  locationController.getLocationsAndCaptions,
+  (req, res) => {
+    console.log('made it to the router');
+    return res.status(200).json(res.locals.bigList);
+  })
 
-    locationController.getLocationsAndCaptions,
-    (req, res) => {
-        console.log('made it to the router');
-        return res.status(200).json(res.locals.bigList);
-    })
+  router.get('/filter/:id',
+  locationController.filterLocations,
+  (req, res) => {
+    return res.status(200).json(res.locals.bigList);
+  });
 
-router.get('/getList',
-    locationController.getLocationsAndCaptions,
-    (req, res) => {
-        console.log('made it to the router');
-        return res.status(200).json(res.locals.bigList);
-    })
+  router.get('/getList/',
+  locationController.getLocationsAndCaptions,
+  (req, res) => {
+    console.log('made it to the getList router');
+    return res.status(200).json(res.locals.bigList);
+  })
+  
+router.get('/getPersonalList/:user',
+  locationController.getUserLocations,
+  locationController.getLocationsAndCaptions,
+  (req, res) => {
+    console.log('made it to the getList for User router');
+    return res.status(200).json(res.locals.bigList);
+  })
+
+router.post('/signup',
+  signupController.createUser,
+  cookieController.setCookie,
+  signupController.createSession,
+  (req, res) => {
+    console.log('signed up successfully');
+    return res.status(200).json({});
+  });
+
+router.post('/login', 
+  loginController.checkCredentials,
+  loginController.checkCookies, 
+  (req, res) => res.status(200).json(res.locals.user));
+
+router.post('/fetch-user',
+  loginController.fetchUser, 
+  (req, res) => {
+      return res.status(200).json({ message: 'user found', user: res.locals.user });
+  });
+
+router.delete('/logout', 
+  (req, res) => {
+    res.clearCookie();
+    return res.redirect('/');
+  });
 
 
+// image upload handling
+const imageUpload = multer({
+    dest: 'images',
+});
 
+router.post('/images',
+  imageUpload.single('image'),
+  imageController.uploadImage,
+  (req, res) =>  
+  res.json({ success: true, filename: res.locals.filename })
+);
+
+router.get('/images/:filename',
+  imageController.getImage,
+  (req, res) => {
+  res.type(res.locals.mimetype).sendFile(res.locals.fullfilepath);
+});
+
+
+    
 
 
 
