@@ -5,13 +5,6 @@ function List (props) {
   // This is the array of saved locations pulled from the database
   const savedLocations = props.savedLocations;
 
-  // This is the current selected pin on the map
-  // const [selected, setSelected] = useState({});
-
-  // const onSelect = item => {
-  //   setSelected(item);
-  // }
-
   // useEffect(() => {
   //   fetch('api/locations')
   //     .then(res => res.json())
@@ -30,9 +23,7 @@ function List (props) {
   return (
     <div id='listContainer'>
 		<h1>Places:</h1>
-		<div id='postContainer'>
       {list}
-		</div>
     </div>
   )
 }
