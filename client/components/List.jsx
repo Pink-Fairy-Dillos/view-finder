@@ -78,64 +78,18 @@ useEffect(() => {
 }, [filter])
 
 
-
-
-
-
-
-
-    // if(filter){
-    //   alert("filtered!")
-    //   console.log("filtered!");
-    // }
-    // for (let i = 0; i< savedLocations.length; i++){
-    //   let photospot = document.getElementById("photospot"); 
-    //   let food = document.getElementById("food"); 
-    //   let hiking = document.getElementById("hiking"); 
-    //   let other = document.getElementById("other"); 
-      
-      
-      // if (filter) {
-      //   if (photospot.clicked && savedLocations[i].category === 1){
-      //     list.push(<Post savedLocations= {savedLocations[i]} />)
-      //    }
-      //   if (food.clicked && savedLocations[i].category === 2){
-      //     list.push(<Post savedLocations= {savedLocations[i]} />)
-      //   }
-      //   if (hiking.clicked && savedLocations[i].category === 3){
-      //     list.push(<Post savedLocations= {savedLocations[i]} />)
-      //   }
-      //   if (other.clicked && savedLocations[i].category === 3){
-      //     list.push(<Post savedLocations= {savedLocations[i]} />)
-      //   }
-      // let list = [];
-      //   if (!filter){
-      //     list.push(<Post savedLocations= {savedLocations[i]} />)
-      //     }
-        // }
-    // }
   
   return (
-<<<<<<< HEAD
     <div className="max-w-1/3 bg-orange-200">
-      <div className="pt-5 " >
-        <img className="h-110 w-80 bg-orange-200" src={logo} alt="">
+      <div className="pt-5" >
+        <img className="h-110 w-80 bg-orange-200" src={logo} alt="logo">
        </img>
-      <div className="bg-orange-300 max-w-xs rounded-xl">
-		    <h1 className="pt-5 pl-7 pr-5 pb-5 font-bold text-3xl">Places:
+      <div className="ml-4 bg-orange-300 max-w-xs max-h-s rounded-xl">
+        <h1 className="p-2 pt-5 pl-7 pr-5 pb-5 font-bold text-3xl">Places:
          </h1>
-    <div className="bg-orange-50">
-		<div className="pl-5 pr-5 pt-5">
-    <div className="border border-black rounded-xl">{list}
-    </div>
-    </div>
-    </div>
-		</div>
-=======
-
-    <div id='listContainer'>
-      <h1>Places:</h1>
-          <input 
+      <div className="ml-2 gap-2">
+          <input
+                
                 id="photospot-checkbox"
                 type="checkbox"
                 name="photospot"
@@ -143,7 +97,7 @@ useEffect(() => {
                 onChange={(e) => handleFilter(e, "photospot-checkbox")}
                 >
                 </input>
-                <label>PhotoSpot</label>
+                <label className='mr-3'> PhotoSpot</label>
       
               <input 
                 id="food-checkbox"
@@ -153,8 +107,9 @@ useEffect(() => {
                 onChange={(e) => handleFilter(e, "food-checkbox")}
                 >
                 </input>
-                <label>Food</label>
-      
+                <label> Food</label>
+        </div>
+        <div className= "ml-2 gap-2">
                 <input 
                 id="hiking-checkbox"
                 type="checkbox"
@@ -163,7 +118,7 @@ useEffect(() => {
                 onChange={(e) => handleFilter(e, "hiking-checkbox")}>
 
                 </input>
-                <label>Hiking</label>
+                <label className='mr-3'> Hiking</label> 
                 
                   <input 
                   id="other-checkbox"
@@ -174,36 +129,22 @@ useEffect(() => {
                   >
 
                   </input>
-                  <label>Other</label>
+                  <label> Other</label>
                   {/* <input type='submit'>Apply Filter</input> */}
-                  <button onClick={applyFilter}>Apply Filter</button>
+          </div>
+          <div className="p-2 flex ml-2 items-center justify-center">
+              <button className="bg-orange-400 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded" onClick={applyFilter}>Apply Filter</button>
+          </div>
 
       <div id='scrollContainer'>
-        <div id='postContainer'>
+        <div className="bg-orange-50 rounded-xl">
           {hasClickedFilter ? listState: initiallist}
         </div>
       </div>
->>>>>>> dev
     </div>
-    </div>
+  </div>
+  </div>
   )
 }
 
 export default List;
-
-
-// if (filter){
-      //  let photospot = document.getElementById('photospot-checkbox');
-      // //  let food = document.getElementById('food-checkbox');
-      //   if (photospot.checked){
-      //     fetch(`/api/filter/1`)
-      //       .then(data => data.json())
-      //       .then ()
-
-      //   }
-
-      //   // /api/filter/${#}
-
-
-      // }
-      // displays all

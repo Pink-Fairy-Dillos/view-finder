@@ -15,8 +15,9 @@ const Favorites = ({ userLocations }) => {
 
 
   return (
-    <div id='favContainer'>
-		<h1>My Pins:</h1>
+    <div className="max-w-1/3 h-full bg-orange-200">
+		<h1 className="pt-5 pl-7 pr-5 pb-5 font-bold text-3xl">My Pins:
+         </h1>
 		<div id='favContainer'>
       {userList}
 		</div>

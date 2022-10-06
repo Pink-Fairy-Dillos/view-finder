@@ -52,18 +52,20 @@ const App = props => {
     <div>
       <div className="w-screen h-auto flex flex-col font-bold"> <Navbar setUserId={setUserId} savedUser={savedUser} setSavedUser={setSavedUser} savedStatus={savedStatus} setSavedStatus={setSavedStatus} setUserLocations={setUserLocations}/> 
       </div> 
-            <div className="pt-10"> 
-            <div>
-            <List savedLocations={savedLocations} /> 
+            <div className="grid grid-cols-4 pt-8"> 
+            <div className="max-w-s col-span-1">
+              <List savedLocations={savedLocations} /> 
             </div>
-            <div>
-            <Map savedLocations={savedLocations} /> 
+            <div className="col-span-2 pt-10">
+                <Map savedLocations={savedLocations} /> 
             </div>
+            <div className="col-span-1 pt-10">
+                <Favorites userLocations={userLocations}/> 
             </div>
-            <div id="favoritesdiv"> <Favorites userLocations={userLocations}/> 
-            </div>
-          <div className="Side-Bar">
+            
+          <div className="col-start-1 col-end-6 pt-10">
             <div id="sidebardiv"> <Sidebar savedLocations={savedLocations} setSavedLocations={setSavedLocations} savedUser={savedUser} userData={userData} userId={userId} setAddress={setAddress} setUserLocations={setUserLocations}/> </div>
+          </div>
           </div>
         </div>
   )

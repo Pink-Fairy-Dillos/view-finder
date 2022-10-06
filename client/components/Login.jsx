@@ -49,7 +49,7 @@ function handleLogin(){
       <label>Password:</label>
       <input type='password' id='password'></input>
       <div>
-      <button id="login-btn" onClick={handleLogin}>Login</button>
+        <button id="login-btn" onClick={handleLogin}>Login</button>
       </div>
     </div>
   )

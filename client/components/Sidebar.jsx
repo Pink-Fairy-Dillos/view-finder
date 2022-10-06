@@ -9,8 +9,8 @@ const Sidebar = props => {
   const setUserLocations = props.setUserLocations;
     return (
 
-        <div className="h-screen w-16 menu bg-white text-white px-4 flex items-center nunito static fixed shadow">
-          <p id="sidebarText">Submit a cool photo location below:</p>
+        <div className="">
+          <p id="sidebarText">Add a Location:</p>
           <Input setUserLocations={setUserLocations} userId={props.userId} savedUser={savedUser} savedLocations={savedLocations} setSavedLocations={setSavedLocations} userData={props.userData} setAddress={props.setAddress}/>
         </div>
        

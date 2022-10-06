@@ -62,18 +62,6 @@ body, html {
   z-index: 100;
 }
 
-#logoV {
-  height: 40px;
-  width: auto;
-  margin-left: 5px;
-}
-
-#arrow {
-  height: 40px;
-  width: auto;
-  /* margin-right: 5px; */
-  margin-bottom: -2px;
-}
 
 #sidebarContainer {
   height: 80vh;
@@ -99,11 +87,11 @@ body, html {
 }
 
 
-.List-Map{
+/* .List-Map{
 	display: grid;
 	grid-template-columns: 1fr 4fr 1fr;
 	grid-column-gap: 0.5fr;
-}
+} */
 
 #list{
   border: 1px solid yellow;
@@ -129,9 +117,9 @@ body, html {
 	height: 100px;
 }
 
-.mapdiv{
+/* .mapdiv{
 margin-right: 100px;
-} 
+}  */
 
 form {
   padding-top: 45px;
@@ -163,14 +151,14 @@ button {
  
 }
 
-.inputContainer {
+/* .inputContainer {
   display: grid;
-  /* grid-template-columns: 100px auto;
-  grid-template-rows: auto auto auto auto auto; */
+  grid-template-columns: 100px auto;
+  grid-template-rows: auto auto auto auto auto;
   font-family: sans-serif;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .inputContainer input {
   /* padding: 10px; */

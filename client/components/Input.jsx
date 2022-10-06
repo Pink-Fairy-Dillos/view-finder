@@ -133,19 +133,17 @@ const Input = (props) => {
     //   }
 
     return (
-
-        <div> 
-           <label>
-            <div className="inputContainer" > 
+        <div className="flex flex-col text-center"> 
+            <div className="inputContainer"> 
                 <input
                 type="text"
                 name="apt"
                 placeholder="Name"
                 defaultValue={userData.name}
                 onChange={(e) => handleChange(e, "name")}
-            />
+                />
              </div> 
-             <div className="inputContainer" > 
+             <div className="inputContainer"> 
                 <input
                 type="text"
                 name="street_address"
@@ -154,7 +152,7 @@ const Input = (props) => {
                 onChange={(e) => handleChange(e, "street_address")}
                 />
             </div>
-            <div className="inputContainer" > 
+            <div className="inputContainer"> 
                 <input
                 type="text"
                 name="city"
@@ -163,16 +161,15 @@ const Input = (props) => {
                 onChange={(e) => handleChange(e, "city")}
             />
             </div>
-            <div className="inputContainer" > 
-            <input
-             type="text"
-             name="state"
-             placeholder="State"
-             defaultValue={userData.state}
-             onChange={(e) => handleChange(e, "state")}
-            />
+            <div className="inputContainer"> 
+                <input
+                type="text"
+                name="state"
+                placeholder="State"
+                defaultValue={userData.state}
+                onChange={(e) => handleChange(e, "state")}
+                />
             </div>
-            
             <div className="inputContainer">
                 <input
                 type="text"
@@ -181,8 +178,7 @@ const Input = (props) => {
                 defaultValue={userData.zip}
                 onChange={(e) => handleChange(e, "zip")}
                 />
-            </div>
-
+            </div>  
             <div className="inputContainer">
                 <input
                 type="text"
@@ -192,7 +188,7 @@ const Input = (props) => {
                 onChange={(e) => handleChange(e, "caption")}
                 />
             </div>
-						<div className="inputContainer">
+			<div className="inputContainer">
 						{/* <label>
                 <input placeholder="Category" list="categories" name="category" defaultValue={userData.category} onChange={(e) => handleChange(e, "category")} onblur="this.readOnly=true" required/>
             </label> */}
@@ -202,14 +198,14 @@ const Input = (props) => {
                     <option className="categoryDropDown" value="hiking"/>
                     <option className="categoryDropDown" value="other"/>
                 </datalist> */}
-            <select required onChange={(e) => handleChange(e, "category")}>
-            <option>--Choose a Category--</option>
-            <option value="photospot">Photospot</option>
-            <option value="food">Food</option>
-            <option value="hiking">Hiking</option>
-            <option value="other">Other</option>
-            </select>
-							</div> 
+                <select required onChange={(e) => handleChange(e, "category")}>
+                <option>--Choose a Category--</option>
+                <option value="photospot">Photospot</option>
+                <option value="food">Food</option>
+                <option value="hiking">Hiking</option>
+                <option value="other">Other</option>
+                </select>
+			</div> 
             <div className="publicCheckBoxContainer">
                 <label>Private</label>
                 <input 
@@ -219,7 +215,7 @@ const Input = (props) => {
                 defaultValue={userData.public}
                 onChange={(e) => handleChange(e, "public")}></input>
             </div> 
-           </label>
+        
            <div className="inputContainer">
                     <input
                     type="file"
