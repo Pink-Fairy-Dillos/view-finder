@@ -159,7 +159,7 @@ locationController.filterLocations = (req, res, next) => {
   const text = `SELECT * FROM locations l LEFT OUTER JOIN captions c ON c.location_id = l._id WHERE l.category = $1;`;
   db.query(text, [req.params.id])
     .then(data => {
-      res.locals.bigList = data.rows[0];
+      res.locals.bigList = data.rows;
       console.log(res.locals.bigList);
       next();
     })
