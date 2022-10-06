@@ -160,7 +160,7 @@ locationController.filterLocations = (req, res, next) => {
   let query = `SELECT * FROM locations l
               LEFT OUTER JOIN captions c
               ON c.location_id = l._id
-              WHERE l.category = ${category}`;
+              WHERE l.category = ${category};`;
 
   db.query(query)
     .then(data => {
