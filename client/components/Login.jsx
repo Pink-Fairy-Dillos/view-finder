@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 const Login = ({ setSavedUser, setLoginModal, setUserLocations, setUserId }) => {
-  
 function handleLogin(){
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -43,6 +42,7 @@ function handleLogin(){
   
   return (
     <div id='loginModal'>
+			<h3>Login</h3>
       <label>Username:</label>
       <input type='text' id='username'></input>
       <label>Password:</label>

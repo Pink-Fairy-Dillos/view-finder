@@ -11,7 +11,33 @@ const Input = (props) => {
 
     // This function takes values from input fields and updates the userData piece of state,
     const handleChange = (e, property) => {
-        if (property === 'public'){
+
+			  if (property === 'category'){
+					let updatedValue = {};
+					let categoryNumber = 0;
+					if (e.target.value === 'photospot'){
+						categoryNumber = 1;
+					}
+					else if (e.target.value === 'food'){
+						categoryNumber = 2;
+					}
+					else if (e.target.value === 'hiking'){
+						categoryNumber = 3;
+					}
+					else if (e.target.value === 'other'){
+						categoryNumber = 4;
+					}
+					else{
+						console.log("error. Incorrect category field");
+						return;
+					}
+					updatedValue = {[property]: categoryNumber};
+					setAddress(userData => ({
+							...userData,
+							...updatedValue
+					}))
+				}
+        else if (property === 'public'){
             let updatedValue = {};
             const publicVal = document.getElementById('public'); 
             if(publicVal.checked){
@@ -123,17 +149,19 @@ const Input = (props) => {
                 defaultValue={userData.caption}
                 onChange={(e) => handleChange(e, "caption")}
                 />
-            </div> 
-            <div className="inputContainer">
-                <input
-                type="text"
-                name="category"
-                placeholder="Category"
-                defaultValue={userData.caption}
-                onChange={(e) => handleChange(e, "category")}
-                />
             </div>
-            <div className="inputContainer">
+						<div className="inputContainer">
+						<label>
+							<input placeholder="Category" list="categories" name="category" defaultValue={userData.category} onChange={(e) => handleChange(e, "category")} onblur="this.readOnly=true"/>
+						</label>
+							<datalist id="categories">
+								<option className="categoryDropDown" value="photospot"/>
+								<option className="categoryDropDown" value="food"/>
+								<option className="categoryDropDown" value="hiking"/>
+								<option className="categoryDropDown" value="other"/>
+							</datalist>
+							</div> 
+            <div className="publicCheckBoxContainer">
                 <label>Private</label>
                 <input 
                 id="public"
@@ -157,3 +185,12 @@ const Input = (props) => {
 
 
 export default Input;
+
+						//  <div className="inputContainer">
+						// 		 <input
+						// 		 type="text"
+						// 		 name="category"
+						// 		 placeholder="Category"
+						// 		 defaultValue={userData.category}
+						// 		 onChange={(e) => handleChange(e, "category")}
+						// 		 />

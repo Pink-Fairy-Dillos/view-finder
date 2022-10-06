@@ -5,7 +5,8 @@ const path = require('path');
 const PORT = 3000;
 const apiRouter = require('./routes/api.js')
 const cookieParser = require('cookie-parser');
-const sessions = require('express-session');
+// const fileUpload = require('express-fileupload');
+const morgan = require('morgan');
 
 
 app.use(express.json());
@@ -13,25 +14,21 @@ app.use(express.json());
 // cookie parser
 app.use(cookieParser());
 
-const oneDay = 1000 * 60 * 60 * 24;
-app.use(sessions({
-  secret: 'thisisthesecretkey123',
-  saveUninitialized:true,
-  cookie: { maxAge: oneDay },
-  resave: false 
-}));
+// file upload
+app.use(morgan('dev'));
+
 
 app.use('/build', express.static(path.join(__dirname, '../build')));
 // route handler to respond with main app
 
 app.get("/",
-  (req, res) => {
-      res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-    })
-
+(req, res) => {
+  res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+})
 
 
 app.use('/api', apiRouter);
+
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) => res.sendStatus(404));
