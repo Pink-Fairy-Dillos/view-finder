@@ -11,7 +11,33 @@ const Input = (props) => {
 
     // This function takes values from input fields and updates the userData piece of state,
     const handleChange = (e, property) => {
-        if (property === 'public'){
+
+			  if (property === 'category'){
+					let updatedValue = {};
+					let categoryNumber = 0;
+					if (e.target.value === 'photospot'){
+						categoryNumber = 1;
+					}
+					else if (e.target.value === 'food'){
+						categoryNumber = 2;
+					}
+					else if (e.target.value === 'hiking'){
+						categoryNumber = 3;
+					}
+					else if (e.target.value === 'other'){
+						categoryNumber = 4;
+					}
+					else{
+						console.log("error. Incorrect category field");
+						return;
+					}
+					updatedValue = {[property]: categoryNumber};
+					setAddress(userData => ({
+							...userData,
+							...updatedValue
+					}))
+				}
+        else if (property === 'public'){
             let updatedValue = {};
             const publicVal = document.getElementById('public'); 
             if(publicVal.checked){
@@ -39,7 +65,6 @@ const Input = (props) => {
                 ...userData,
                 ...updatedValue
             }))
-						console.log(userData);
         }
     }
 
