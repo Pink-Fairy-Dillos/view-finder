@@ -6,6 +6,7 @@ const Post = props => {
 		<div className='postContainer'>
 			{props.savedLocations.name}
 			{props.savedLocations.created_by_id}
+			{props.savedLocations.category}
 		</div>
 	)
 }
