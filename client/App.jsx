@@ -49,7 +49,7 @@ const App = props => {
             <div id="favoritesdiv"> <Favorites userLocations={userLocations}/> </div>
           </div>
           <div className="Side-Bar">
-            <div id="sidebardiv"> <Sidebar savedLocations={savedLocations} setSavedLocations={setSavedLocations} userData={userData} setAddress={setAddress}/> </div>
+            <div id="sidebardiv"> <Sidebar savedLocations={savedLocations} setSavedLocations={setSavedLocations} userData={userData} userId={userId} setAddress={setAddress}/> </div>
           </div>
         </div>
 

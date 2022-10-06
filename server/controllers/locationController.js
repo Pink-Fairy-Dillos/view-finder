@@ -38,11 +38,11 @@ locationController.geoCode = (req, res, next) => {
 //the location _id will then be passed on to be used so cave the entry in captions table with a reference to the location
 locationController.addLocation = (req, res, next) => {
   console.log('hello, from ADD LOCATION');
-  const { name, caption, zip, category_id, created_by_id } = req.body;
+  const { name, caption, zip, category, created_by_id } = req.body;
     const location_public = req.body.public;
   const { street_address, city, state, lat, lng, formatted_address } = res.locals.newEntry;
   const text = 'INSERT INTO locations(street_address, city, state, created_by_id, zip_code, lat, lng,  name, formatted_address, category, public) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING _id;';
-  const params = [street_address, city, state, created_by_id, zip, lat, lng, name, formatted_address, category_id, location_public];
+  const params = [street_address, city, state, created_by_id, zip, lat, lng, name, formatted_address, category, location_public];
 
   db.query(text, params, (err, res2) => {
     if (err) {

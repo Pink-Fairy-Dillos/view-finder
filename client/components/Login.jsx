@@ -22,6 +22,7 @@ function handleLogin(){
       .then(data => {
         console.log(data);
         setSavedUser(data.username);
+        console.log(data.id);
         setUserId(data.id); // getting ID from backend (no need if cookies)
         const fetchString = `/api/getPersonalList/${data.username}`
         console.log(fetchString)
