@@ -118,7 +118,6 @@ useEffect(() => {
 
     <div id='listContainer'>
       <h1>Places:</h1>
-      <label>PhotoSpot</label>
           <input 
                 id="photospot-checkbox"
                 type="checkbox"
@@ -127,8 +126,8 @@ useEffect(() => {
                 onChange={(e) => handleFilter(e, "photospot-checkbox")}
                 >
                 </input>
-
-      <label>Food</label>
+                <label>PhotoSpot</label>
+      
               <input 
                 id="food-checkbox"
                 type="checkbox"
@@ -137,7 +136,8 @@ useEffect(() => {
                 onChange={(e) => handleFilter(e, "food-checkbox")}
                 >
                 </input>
-      <label>Hiking</label>
+                <label>Food</label>
+      
                 <input 
                 id="hiking-checkbox"
                 type="checkbox"
@@ -146,8 +146,8 @@ useEffect(() => {
                 onChange={(e) => handleFilter(e, "hiking-checkbox")}>
 
                 </input>
-
-                <label>Other</label>
+                <label>Hiking</label>
+                
                   <input 
                   id="other-checkbox"
                   type="checkbox"
@@ -157,6 +157,7 @@ useEffect(() => {
                   >
 
                   </input>
+                  <label>Other</label>
                   {/* <input type='submit'>Apply Filter</input> */}
                   <button onClick={applyFilter}>Apply Filter</button>
 

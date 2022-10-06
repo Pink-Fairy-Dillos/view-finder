@@ -38,6 +38,15 @@ const App = props => {
       })
   }, savedLocations)
 
+  // useEffect(() => {
+  //   fetch(`/api/getPersonalList/${username}`)
+  //     .then(res => res.json())
+  //     .then((locations) => {
+  //       if (!Array.isArray(locations)) locations = [];
+  //         setUserLocations(locations);
+  //     })
+  // }, userLocations)
+
   return (
     
     <div id="maindiv">
@@ -49,7 +58,7 @@ const App = props => {
             <div id="favoritesdiv"> <Favorites userLocations={userLocations}/> </div>
           </div>
           <div className="Side-Bar">
-            <div id="sidebardiv"> <Sidebar savedLocations={savedLocations} setSavedLocations={setSavedLocations} userData={userData} setAddress={setAddress}/> </div>
+            <div id="sidebardiv"> <Sidebar savedLocations={savedLocations} setSavedLocations={setSavedLocations} savedUser={savedUser} userData={userData} userId={userId} setAddress={setAddress} setUserLocations={setUserLocations}/> </div>
           </div>
         </div>
 
