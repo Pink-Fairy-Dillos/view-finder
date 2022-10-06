@@ -5,8 +5,6 @@ import Post from "./Post.jsx"
 const Favorites = ({ userLocations }) => {
 
   // This is the array of saved locations pulled from the database
-  console.log(userLocations);
-
 
 	let userList = [];
   if (userLocations){

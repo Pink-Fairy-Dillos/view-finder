@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 const Login = ({ setSavedUser, setLoginModal, setUserLocations, setUserId }) => {
-  
 function handleLogin(){
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
