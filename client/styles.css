@@ -1,5 +1,5 @@
 body, html {
-  background-color: #FFD1A4;
+  background-color: #D6CDA4;
   display: flex;
   margin: auto;
   padding: 0;
@@ -7,6 +7,9 @@ body, html {
   width: 100%;
 }
 
+#places, #checkbox, #pins, #add-location {
+  font-family: 'Noto Serif Gujarati', serif;
+}
 #app {
   height: 100%;
   width: 100%;
@@ -72,6 +75,10 @@ body, html {
   border-left: 3px solid black;
   padding-top: 30px;
 } */
+#head {
+  display: flex;
+  justify-content: space-between;
+}
 
 #sidebarText {
   display: inline;
@@ -85,6 +92,16 @@ body, html {
 	flex-direction: column;
 }
 
+.meet {
+  padding-left: 350px;
+  padding-right: 200px;
+  color: white;
+  font-family: 'Alkalami', serif;
+  font-size: 50px;
+  align-items: center;
+  text-align: center;
+  padding-top: 20px;
+}
 
 /* .List-Map{
 	display: grid;
@@ -105,7 +122,15 @@ body, html {
 
   #scrollContainer {
     overflow-y: scroll;
-    max-height: 800px;
+    max-height: 560px;
+
+
+  }
+  #scrollContainer2 {
+    overflow-y: scroll;
+    max-height: 660px;
+
+
   }
 .postContainer{
   overflow-y: scroll;

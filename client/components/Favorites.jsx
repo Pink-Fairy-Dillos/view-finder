@@ -15,13 +15,15 @@ const Favorites = ({ userLocations }) => {
 
 
   return (
-    <div className="max-w-1/3 h-full bg-orange-200">
-		<h1 className="pt-5 pl-7 pr-5 pb-5 font-bold text-3xl">My Pins:
+    <div className="mt-14">
+      <div className="ml-7 bg-[#A1C298] max-w-xs max-h-lg shadow-2xl rounded-xl pb-6">
+		<h1 id="pins" className=" ml-20 pt-5 pl-7 pr-5 pb-5 font-bold text-3xl">My Pins
          </h1>
-		<div className="ml-4 bg-orange-300 max-w-xs max-h-lg rounded-xl" id='favContainer'>
+		<div className="p-1 pl-2 shadow-2xl ml-3 bg-[#1C6758] max-w-xs max-h-lg rounded-xl" id='scrollContainer2'>
       {userList}
 		</div>
     </div>
+</div>
   )
 }
 

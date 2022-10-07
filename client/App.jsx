@@ -58,7 +58,7 @@ const App = props => {
             </div>
             <div className="col-span-2 pt-10">
                 <Map savedLocations={savedLocations} /> 
-          <div className="bg-orange-200">
+          <div className="bg-[#D6CDA4]">
             <div id="sidebardiv"> <Sidebar savedLocations={savedLocations} setSavedLocations={setSavedLocations} savedUser={savedUser} userData={userData} userId={userId} setAddress={setAddress} setUserLocations={setUserLocations}/> </div>
           </div>
             </div>

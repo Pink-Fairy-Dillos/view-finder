@@ -42,7 +42,7 @@ function handleSignup(){
       <input className="bg-white border border-slate-100 rounded" type='text' id='username'></input>
       <label>Password:</label>
       <input type='password' id='password'></input>
-      <button class="p-1" onClick={handleSignup}>Sign Up</button>
+      <button class="p-1" className="p-1 bg-[#FA7070]" onClick={handleSignup}>Sign Up</button>
     </div>
   )
 }

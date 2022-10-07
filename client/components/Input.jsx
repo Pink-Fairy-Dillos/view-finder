@@ -133,7 +133,8 @@ const Input = (props) => {
     //   }
 
     return (
-        <div className="flex flex-col text-center"> 
+        <div className="mt-3 flex flex-col text-center bg-[#A1C298] rounded-xl"> 
+        <h1 id="add-location" className="pt-5 p-3 pl-7 pr-5 pb-6 font-bold text-3xl">Add a Pin</h1>
             <div className="inputContainer"> 
                 
                 <input
@@ -143,6 +144,15 @@ const Input = (props) => {
                 defaultValue={userData.name}
                 onChange={(e) => handleChange(e, "name")}
                 />
+
+                <input
+                type="text"
+                name="caption"
+                placeholder="Caption"
+                defaultValue={userData.caption}
+                onChange={(e) => handleChange(e, "caption")}
+                />
+
                 <input
                 type="text"
                 name="street_address"
@@ -173,13 +183,7 @@ const Input = (props) => {
                 onChange={(e) => handleChange(e, "zip")}
                 />
 
-                <input
-                type="text"
-                name="caption"
-                placeholder="Caption"
-                defaultValue={userData.caption}
-                onChange={(e) => handleChange(e, "caption")}
-                />
+                
             </div>
 			<div className="inputContainer">
 						{/* <label>
@@ -217,6 +221,7 @@ const Input = (props) => {
                     id="file"
                     onChange={(e) => addImage(e)} 
                     />
+                    <br />
            <button className="bg-[#FA7070] hover:bg-orange-300 text-white font-bold py-2 px-4 rounded" onClick={submitFunc}>Submit</button>
            </div>
         </div>

@@ -39,7 +39,7 @@ function MyComponent(props) {
 
   // Refer to the slim google maps API library documentation for built in methods an props
   return (
-    <div className="max-w-m">
+    <div className="border mt-14 shadow-2xl rounded-full">
     <LoadScript
      // Add in your own Google Maps API key here
       googleMapsApiKey="AIzaSyBRacG1Uw6S2XcqqqA50dnaTRUSwiJ2Gg4"

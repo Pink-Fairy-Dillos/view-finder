@@ -31,7 +31,7 @@ const Post = props => {
 
 
 	return (
-		<div className="bg-white w-xs rounded-xl p-5 m-2">
+		<div className="bg-[#EEF2E6] w-xs rounded-xl p-5 m-2">
 			<div className="font-bold text-lg underline" id='displayName'>{props.savedLocations.name}</div>
 			<div id='displayAddress'> {props.savedLocations.street_address}, {props.savedLocations.state}</div>
 			<div className="text-sm" id='displayCaption'>{props.savedLocations.caption}</div>

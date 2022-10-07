@@ -22,21 +22,33 @@ const Navbar = props => {
   function loginModal(){
     setLoginModal(!hasClickedLogIn);
   }
+  
+  const logOut = () => {
+    window.location.reload();
+  }
 
     return (
         
-      <header className="fixed z-50 w-full p-4 bg-[#A1C298]">
-          <div className="md:flex w-full h-full">
-            <div className ="flex items-center ml-auto gap-2">
-            <div className="relative">
+      <header className="fixed z-50 w-full p-3 bg-[#1C6758]">
+          
+          <div id="head" className="md:flex">
+            <div className="flex gap-2">
+            <img className="flex flex-col float-left w-20" src={logo} alt=""/>
+            <div className="meet">MEET ME AT THE SPOT</div>
+            <div className="relative items-right ml-20">
+            
               {!savedUser ? <button className="p-1 justify-right bg-[#FA7070] hover:bg-orange-300 text-white font-bold py-2 px-4 rounded" onClick={loginModal}>Log In</button>: null}
+              <div className="w-40 bg-white shadow-xl rounded-lg flex flex-col absolute right-0 top-12">
           {hasClickedLogIn ? <Login setSavedUser={setSavedUser} savedStatus={savedStatus} setLoginModal={setLoginModal} setUserLocations={props.setUserLocations} setUserId={setUserId}/> : null}
-          {savedUser ? <button>Log Out</button>: null}
+          {savedUser ? <button className="p-1 bg-[#FA7070] hover:bg-orange-300 text-white font-bold py-2 px-4 rounded" onClick={logOut}>Log Out</button>: null}
+          </div>
             </div>
             <div className="relative">
             {!savedUser ? <button className="bg-[#FA7070] hover:bg-orange-300 text-white font-bold py-2 px-4 rounded"
-            Button onClick={signupModal}>Sign Up</button> : <span>Welcome {savedUser}! </span>}
+            Button onClick={signupModal}>Sign Up</button> : <span className="text-white">Welcome {savedUser}! </span>}
+            <div className="w-40 bg-white shadow-xl rounded-lg flex flex-col absolute right-0 top-12">
               {hasClickedSignUp ? <Signup setSavedUser={setSavedUser} setSignUpModal={setSignUpModal} setLoginModal={setLoginModal}/> : null}
+              </div>
               </div>
             </div>
             </div>

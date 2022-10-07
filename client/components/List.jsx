@@ -80,12 +80,12 @@ useEffect(() => {
 
   
   return (
-    <div className="max-w-1/3 bg-orange-200">
-      <div className="mt-12" >
-      <div className="ml-7 bg-[#A1C298] max-w-xs max-h-lg rounded-xl">
-        <h1 className="p-3 pl-7 pr-5 pb-5 font-bold text-3xl">Places:
+    <div className="max-w-1/3 bg-[#D6CDA4]">
+      <div className="mt-24" >
+      <div className="ml-7 shadow-2xl bg-[#A1C298] max-w-xs max-h-lg rounded-xl pb-6">
+        <h1 id="places" className="p-3 pt-5 pl-7 pr-5 pb-2 ml-6 font-bold text-3xl">All Public Pins
          </h1>
-      <div className="ml-2 gap-2">
+      <div id="checkbox" className="ml-2 gap-2 text-center">
           <input
                 
                 id="photospot-checkbox"
@@ -107,7 +107,7 @@ useEffect(() => {
                 </input>
                 <label> Food</label>
         </div>
-        <div className= "ml-2 gap-2">
+        <div className= "ml-2 gap-2 text-center">
                 <input 
                 id="hiking-checkbox"
                 type="checkbox"
@@ -130,12 +130,12 @@ useEffect(() => {
                   <label> Other</label>
                   {/* <input type='submit'>Apply Filter</input> */}
           </div>
-          <div className="p-2 flex ml-2 items-center justify-center">
-              <button className="p-1 bg-[#FA7070] hover:bg-orange-300 text-white font-bold py-2 px-4 rounded" onClick={applyFilter}>Apply Filter</button>
+          <div className="p-2 shadow-2xl flex ml-2 items-center justify-center">
+              <button className="p-1 shadow-xlbg-[#FA7070] hover:bg-orange-300 text-white font-bold py-2 px-4 rounded" onClick={applyFilter}>Apply Filter</button>
           </div>
 
-      <div className="p-2" id='scrollContainer' >
-        <div className="pt-1 max-h-s bg-[#1C6758] rounded-xl">
+      <div className="p-2 rounded-xl" id='scrollContainer' >
+        <div className="pt-1 pb-2 max-h-s bg-[#1C6758] rounded-xl">
           {hasClickedFilter ? listState: initiallist}
         </div>
       </div>
