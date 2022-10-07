@@ -135,6 +135,7 @@ const Input = (props) => {
     return (
         <div className="flex flex-col text-center"> 
             <div className="inputContainer"> 
+                
                 <input
                 type="text"
                 name="apt"
@@ -142,8 +143,6 @@ const Input = (props) => {
                 defaultValue={userData.name}
                 onChange={(e) => handleChange(e, "name")}
                 />
-             </div> 
-             <div className="inputContainer"> 
                 <input
                 type="text"
                 name="street_address"
@@ -151,8 +150,6 @@ const Input = (props) => {
                 defaultValue={userData.street_address}
                 onChange={(e) => handleChange(e, "street_address")}
                 />
-            </div>
-            <div className="inputContainer"> 
                 <input
                 type="text"
                 name="city"
@@ -160,8 +157,7 @@ const Input = (props) => {
                 defaultValue={userData.city}
                 onChange={(e) => handleChange(e, "city")}
             />
-            </div>
-            <div className="inputContainer"> 
+            
                 <input
                 type="text"
                 name="state"
@@ -169,8 +165,6 @@ const Input = (props) => {
                 defaultValue={userData.state}
                 onChange={(e) => handleChange(e, "state")}
                 />
-            </div>
-            <div className="inputContainer">
                 <input
                 type="text"
                 name="zip"
@@ -178,8 +172,7 @@ const Input = (props) => {
                 defaultValue={userData.zip}
                 onChange={(e) => handleChange(e, "zip")}
                 />
-            </div>  
-            <div className="inputContainer">
+
                 <input
                 type="text"
                 name="caption"
@@ -224,10 +217,8 @@ const Input = (props) => {
                     id="file"
                     onChange={(e) => addImage(e)} 
                     />
-                    <button onClick={(e) => addImage(e)}>Add Photo</button>
-           <button onClick={submitFunc}>Submit</button>
+           <button className="bg-[#FA7070] hover:bg-orange-300 text-white font-bold py-2 px-4 rounded" onClick={submitFunc}>Submit</button>
            </div>
-           <div id="instructions"> Welcome to Viewfinder! Check out the pins on the map for cool spots for a photo opportunity. If you know an instragammable landmark or viewpoint, submit it using the forms above! </div>
         </div>
     )
 

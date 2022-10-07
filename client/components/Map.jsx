@@ -61,12 +61,10 @@ function MyComponent(props) {
           (
             <InfoWindow position={selected.location} clickable={true} onCloseClick={() => setSelected({})}>
               <p>
-                <p>{selected.name}</p>
+                <p><strong>{selected.name}</strong></p>
                 <p>{selected.street_address}</p>
-                <p>{selected.city}</p>
-                <p>{selected.state}</p>
-                <p>{selected.zip_code}</p>
-                <p>{selected.caption}</p>
+                <p>{selected.city}, {selected.state} {selected.zip_code}</p>
+                <p>"{selected.caption}" - Somebody</p>
               </p>
             </InfoWindow>
           )

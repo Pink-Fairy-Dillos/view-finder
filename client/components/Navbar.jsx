@@ -25,16 +25,16 @@ const Navbar = props => {
 
     return (
         
-      <header className="fixed z-50 w-full p-4 bg-orange-300">
+      <header className="fixed z-50 w-full p-4 bg-[#A1C298]">
           <div className="md:flex w-full h-full">
             <div className ="flex items-center ml-auto gap-2">
             <div className="relative">
-              {!savedUser ? <button className="justify-right bg-orange-400 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded" onClick={loginModal}>Log In</button>: null}
+              {!savedUser ? <button className="p-1 justify-right bg-[#FA7070] hover:bg-orange-300 text-white font-bold py-2 px-4 rounded" onClick={loginModal}>Log In</button>: null}
           {hasClickedLogIn ? <Login setSavedUser={setSavedUser} savedStatus={savedStatus} setLoginModal={setLoginModal} setUserLocations={props.setUserLocations} setUserId={setUserId}/> : null}
           {savedUser ? <button>Log Out</button>: null}
             </div>
             <div className="relative">
-            {!savedUser ? <button className="bg-orange-400 hover:bg-orange-300 text-white font-bold py-2 px-4 rounded"
+            {!savedUser ? <button className="bg-[#FA7070] hover:bg-orange-300 text-white font-bold py-2 px-4 rounded"
             Button onClick={signupModal}>Sign Up</button> : <span>Welcome {savedUser}! </span>}
               {hasClickedSignUp ? <Signup setSavedUser={setSavedUser} setSignUpModal={setSignUpModal} setLoginModal={setLoginModal}/> : null}
               </div>
