@@ -6,7 +6,7 @@ import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/ap
 
 // This sets the map size in the app. This gets passed into the GoogleMap component in the mapContainerStyle attribute
 const mapStyle = {
-    height: '100vh',
+    height: '55vh',
     width: '100%',
   }
 
@@ -39,6 +39,7 @@ function MyComponent(props) {
 
   // Refer to the slim google maps API library documentation for built in methods an props
   return (
+    <div className="border mt-14 shadow-2xl rounded-full">
     <LoadScript
      // Add in your own Google Maps API key here
       googleMapsApiKey="AIzaSyBRacG1Uw6S2XcqqqA50dnaTRUSwiJ2Gg4"
@@ -60,12 +61,10 @@ function MyComponent(props) {
           (
             <InfoWindow position={selected.location} clickable={true} onCloseClick={() => setSelected({})}>
               <p>
-                <p>{selected.name}</p>
+                <p><strong>{selected.name}</strong></p>
                 <p>{selected.street_address}</p>
-                <p>{selected.city}</p>
-                <p>{selected.state}</p>
-                <p>{selected.zip_code}</p>
-                <p>{selected.caption}</p>
+                <p>{selected.city}, {selected.state} {selected.zip_code}</p>
+                <p>"{selected.caption}" - Somebody</p>
               </p>
             </InfoWindow>
           )
@@ -73,6 +72,7 @@ function MyComponent(props) {
         <></>
       </GoogleMap>
     </LoadScript>
+    </div>
   )
 }
 
